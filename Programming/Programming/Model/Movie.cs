@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Programming.Model
+{
+    internal class Movie
+    {
+        private String name;
+        private int duration;
+        private int yearOfRelease;
+        private Genre genre;
+        private double rating;
+
+        public Movie()
+        {
+        }
+
+        public Movie(string name, int duration, int yearOfRelease, Model.Genre genre, double rating)
+        {
+            setName(name);
+            setDuration(duration);
+            setYearOfRelease(yearOfRelease);
+            setGenre(genre);
+            setRating(rating);
+        }
+
+        public String getName()
+        {
+            return name;
+        }
+        public int getYearOfRelease()
+        {
+            return yearOfRelease;
+        }
+        public int getDuration()
+        {
+            return duration;
+        }
+        public Model.Genre getGenre()
+        {
+            return genre;
+        }
+        public double getRating()
+        {
+            return rating;
+        }
+        public void setRating(double rating)
+        {
+            if (rating < 0 || rating > 10)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else
+            {
+                this.rating = rating;
+            }
+        }
+        public void setGenre(Model.Genre genre)
+        {
+            this.genre = genre;
+        }
+        public void setDuration(int duration)
+        {
+            if (duration > 0)
+            {
+                this.duration = duration;
+            } else
+            {
+                MessageBox.Show("Некорректное значение длительности");
+            }
+        }
+        public void setYearOfRelease(int yearOfRelease)
+        {
+            if (yearOfRelease >= 1900 && yearOfRelease <= 2025)
+            {
+                this.yearOfRelease = yearOfRelease;
+            } else
+            {
+                MessageBox.Show("Некорректное значение года");
+            }
+        }
+        public void setName(String name)
+        {
+            this.name = name;
+        }
+    }
+}
