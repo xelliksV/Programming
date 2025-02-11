@@ -49,11 +49,7 @@ namespace Programming.Model
         }
         public void setRating(double rating)
         {
-            if (rating < 0 || rating > 10)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            else
+            if (Validator.assertValueInRange(rating, 0, 10))
             {
                 this.rating = rating;
             }
@@ -64,22 +60,16 @@ namespace Programming.Model
         }
         public void setDuration(int duration)
         {
-            if (duration > 0)
+            if(Validator.assertOnPositiveValue(duration))
             {
                 this.duration = duration;
-            } else
-            {
-                MessageBox.Show("Некорректное значение длительности");
             }
         }
         public void setYearOfRelease(int yearOfRelease)
         {
-            if (yearOfRelease >= 1900 && yearOfRelease <= 2025)
+            if (Validator.assertValueInRange(yearOfRelease, 1899, 2026))
             {
                 this.yearOfRelease = yearOfRelease;
-            } else
-            {
-                MessageBox.Show("Некорректное значение года");
             }
         }
         public void setName(String name)

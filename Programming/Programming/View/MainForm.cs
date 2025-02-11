@@ -7,12 +7,13 @@ namespace Programming
         private Model.Rectangle _currentRectangle;
         private Model.Movie[] _movies = new Model.Movie[5];
         private Model.Movie _currentMovie;
+
         public MainForm()
         {
             InitializeComponent();
             for (int i = 0; i < 5; i++)
             {
-                _rectangles[i] = new Model.Rectangle(new Random().NextDouble() * 100, new Random().NextDouble() * 100, "Purple");
+                _rectangles[i] = new Model.Rectangle(new Random().NextDouble() * 100, new Random().NextDouble() * 100, "Purple", new Model.Point2D(new Random().NextDouble() * 100, new Random().NextDouble() * 100));
             }
             setUpMovies();
         }
@@ -150,6 +151,8 @@ namespace Programming
             textBox1.Text = _currentRectangle.getHeight().ToString();
             textBox2.Text = _currentRectangle.getWidth().ToString();
             textBox3.Text = _currentRectangle.getColor();
+            textBox4.Text = _currentRectangle.getCenter().toString();
+            id.Text = _currentRectangle.id().ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)

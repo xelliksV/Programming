@@ -36,11 +36,7 @@ namespace Programming.Model
         }
         public void setDuration(int duration)
         {
-            if (duration < 0)
-            {
-                MessageBox.Show("Некорректное значение");
-            }
-            else
+            if (Validator.assertOnPositiveValue(duration))
             {
                 this.duration = duration;
             }

@@ -25,33 +25,23 @@ namespace Programming.Model
 
         public void setHour(int hour)
         {
-            if (hour >= 0 && hour <= 23)
+            if (Validator.assertValueInRange(hour, -1, 24))
             {
                 this.hour = hour;
-            } else
-            {
-                MessageBox.Show("Некорректное значение");
             }
         }
         public void setMinute(int minute)
         {
-            if (minute >= 0 && minute <= 60)
+            if (Validator.assertValueInRange(minute, -1, 61))
             {
-                this.minute = minute;
-            } else
-            {
-                MessageBox.Show("Некорректное значение");
-            }
+                this.minute = minute; 
+            } 
         }
         public void setSecond(int second)
         {
-            if(second >= 0 && second <= 60)
+            if (Validator.assertValueInRange(second, -1, 61))
             {
-                this.second = second; 
-            }
-            else
-            {
-                MessageBox.Show("Некорректное значение");
+                this.second = second;
             }
         }
         public int getHour()

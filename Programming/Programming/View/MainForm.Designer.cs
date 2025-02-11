@@ -71,6 +71,10 @@
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabControl1 = new TabControl();
+            textBox4 = new TextBox();
+            label11 = new Label();
+            id = new TextBox();
+            label12 = new Label();
             Classes.SuspendLayout();
             movieTab.SuspendLayout();
             Rectangles.SuspendLayout();
@@ -101,11 +105,15 @@
             movieTab.Location = new Point(8, 8);
             movieTab.Name = "movieTab";
             movieTab.SelectedIndex = 0;
-            movieTab.Size = new Size(257, 282);
+            movieTab.Size = new Size(257, 290);
             movieTab.TabIndex = 0;
             // 
             // Rectangles
             // 
+            Rectangles.Controls.Add(label12);
+            Rectangles.Controls.Add(id);
+            Rectangles.Controls.Add(label11);
+            Rectangles.Controls.Add(textBox4);
             Rectangles.Controls.Add(button1);
             Rectangles.Controls.Add(label5);
             Rectangles.Controls.Add(textBox3);
@@ -117,14 +125,14 @@
             Rectangles.Location = new Point(4, 24);
             Rectangles.Name = "Rectangles";
             Rectangles.Padding = new Padding(3);
-            Rectangles.Size = new Size(249, 254);
+            Rectangles.Size = new Size(249, 262);
             Rectangles.TabIndex = 1;
             Rectangles.Text = "Rectangles";
             Rectangles.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.Location = new Point(129, 152);
+            button1.Location = new Point(78, 233);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 1;
@@ -190,7 +198,7 @@
             listBox1.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
             listBox1.Location = new Point(3, 6);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(120, 169);
+            listBox1.Size = new Size(120, 214);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -514,6 +522,39 @@
             tabControl1.Size = new Size(800, 450);
             tabControl1.TabIndex = 0;
             // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(129, 157);
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.Size = new Size(100, 23);
+            textBox4.TabIndex = 6;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(131, 139);
+            label11.Name = "label11";
+            label11.Size = new Size(45, 15);
+            label11.TabIndex = 7;
+            label11.Text = "Center:";
+            // 
+            // id
+            // 
+            id.Location = new Point(129, 197);
+            id.Name = "id";
+            id.Size = new Size(100, 23);
+            id.TabIndex = 8;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(132, 183);
+            label12.Name = "label12";
+            label12.Size = new Size(21, 15);
+            label12.TabIndex = 9;
+            label12.Text = "ID:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -585,5 +626,9 @@
         private TextBox raiting;
         private TextBox year;
         private ComboBox genre;
+        private Label label11;
+        private TextBox textBox4;
+        private Label label12;
+        private TextBox id;
     }
 }

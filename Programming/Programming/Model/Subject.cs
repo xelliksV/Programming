@@ -38,11 +38,7 @@ namespace Programming.Model
         }
         public void setHours(int hours)
         {
-            if (hours < 0)
-            {
-                MessageBox.Show("Некорректное значение");
-            }
-            else
+            if (Validator.assertOnPositiveValue(hours))
             {
                 this.hours = hours;
             }

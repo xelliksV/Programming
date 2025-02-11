@@ -11,30 +11,43 @@ namespace Programming.Model
         private double width;
         private double height;
         private String color;
+        private Point2D center;
+        private static int _allRectanglesCount = 0;
+        private int _id;
 
-        public Rectangle(double width, double height, string color)
+        public Rectangle(double width, double height, string color, Point2D center)
         {
             setWidth(width);
             setHeight(height);
             this.color = color;
+            this.center = center;
+            _id = _allRectanglesCount++;
         }
 
         public Rectangle()
         {
         }
-
+        public int id()
+        {
+            return _id;
+        }
+        public static int allRectanglesCount()
+        {
+            return _allRectanglesCount;
+        }
+        public Point2D getCenter()
+        {
+            return center;
+        }
         public double getWidth()
         {
             return width;
         }
         public void setWidth(double width)
         {
-            if (width > 0)
+            if (Validator.assertOnPositiveValue(width))
             {
                 this.width = width;
-            } else
-            {
-                MessageBox.Show("Некорректное значение");
             }
         }
         public double getHeight()
@@ -43,12 +56,9 @@ namespace Programming.Model
         }
         public void setHeight(double height)
         {
-            if (height > 0)
+            if (Validator.assertOnPositiveValue(height))
             {
                 this.height = height;
-            } else
-            {
-                MessageBox.Show("Некорректное значение");
             }
         }
         public String getColor() 
