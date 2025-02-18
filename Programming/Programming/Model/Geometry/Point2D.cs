@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Point2D
     {
@@ -21,21 +21,21 @@ namespace Programming.Model
         }
         private void setX(double x)
         {
-            if (Validator.assertValueInRange(x, -100, 100))
+            if (Validator.assertValueInRange(x, -100, 500))
             {
                 X = x;
             }
         }
         private void setY(double y)
         {
-            if (Validator.assertValueInRange(y, -100, 100)) 
+            if (Validator.assertValueInRange(y, -100, 500))
             {
                 Y = y;
             }
         }
         public double getX() { return X; }
         public double getY() { return Y; }
-        public String toString()
+        public string toString()
         {
             return $"({X.ToString()};{Y.ToString()})";
         }

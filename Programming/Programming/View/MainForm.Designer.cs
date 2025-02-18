@@ -30,7 +30,11 @@
         {
             Classes = new TabPage();
             movieTab = new TabControl();
-            Rectangles = new TabPage();
+            Rectangle = new TabPage();
+            label12 = new Label();
+            id = new TextBox();
+            label11 = new Label();
+            textBox4 = new TextBox();
             button1 = new Button();
             label5 = new Label();
             textBox3 = new TextBox();
@@ -71,13 +75,25 @@
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabControl1 = new TabControl();
-            textBox4 = new TextBox();
-            label11 = new Label();
-            id = new TextBox();
-            label12 = new Label();
+            Rectangles = new TabPage();
+            panel1 = new Panel();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            textBox9 = new TextBox();
+            textBox8 = new TextBox();
+            textBox7 = new TextBox();
+            textBox6 = new TextBox();
+            textBox5 = new TextBox();
+            label13 = new Label();
+            button4 = new Button();
+            button3 = new Button();
+            listBox3 = new ListBox();
             Classes.SuspendLayout();
             movieTab.SuspendLayout();
-            Rectangles.SuspendLayout();
+            Rectangle.SuspendLayout();
             Movies.SuspendLayout();
             tabPage1.SuspendLayout();
             seasonTab.SuspendLayout();
@@ -85,6 +101,7 @@
             enumParseTab.SuspendLayout();
             tabPage3.SuspendLayout();
             tabControl1.SuspendLayout();
+            Rectangles.SuspendLayout();
             SuspendLayout();
             // 
             // Classes
@@ -100,7 +117,7 @@
             // 
             // movieTab
             // 
-            movieTab.Controls.Add(Rectangles);
+            movieTab.Controls.Add(Rectangle);
             movieTab.Controls.Add(Movies);
             movieTab.Location = new Point(8, 8);
             movieTab.Name = "movieTab";
@@ -108,27 +125,60 @@
             movieTab.Size = new Size(257, 290);
             movieTab.TabIndex = 0;
             // 
-            // Rectangles
+            // Rectangle
             // 
-            Rectangles.Controls.Add(label12);
-            Rectangles.Controls.Add(id);
-            Rectangles.Controls.Add(label11);
-            Rectangles.Controls.Add(textBox4);
-            Rectangles.Controls.Add(button1);
-            Rectangles.Controls.Add(label5);
-            Rectangles.Controls.Add(textBox3);
-            Rectangles.Controls.Add(label4);
-            Rectangles.Controls.Add(textBox2);
-            Rectangles.Controls.Add(label3);
-            Rectangles.Controls.Add(textBox1);
-            Rectangles.Controls.Add(listBox1);
-            Rectangles.Location = new Point(4, 24);
-            Rectangles.Name = "Rectangles";
-            Rectangles.Padding = new Padding(3);
-            Rectangles.Size = new Size(249, 262);
-            Rectangles.TabIndex = 1;
-            Rectangles.Text = "Rectangles";
-            Rectangles.UseVisualStyleBackColor = true;
+            Rectangle.Controls.Add(label12);
+            Rectangle.Controls.Add(id);
+            Rectangle.Controls.Add(label11);
+            Rectangle.Controls.Add(textBox4);
+            Rectangle.Controls.Add(button1);
+            Rectangle.Controls.Add(label5);
+            Rectangle.Controls.Add(textBox3);
+            Rectangle.Controls.Add(label4);
+            Rectangle.Controls.Add(textBox2);
+            Rectangle.Controls.Add(label3);
+            Rectangle.Controls.Add(textBox1);
+            Rectangle.Controls.Add(listBox1);
+            Rectangle.Location = new Point(4, 24);
+            Rectangle.Name = "Rectangle";
+            Rectangle.Padding = new Padding(3);
+            Rectangle.Size = new Size(249, 262);
+            Rectangle.TabIndex = 1;
+            Rectangle.Text = "Rectangles";
+            Rectangle.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(132, 183);
+            label12.Name = "label12";
+            label12.Size = new Size(21, 15);
+            label12.TabIndex = 9;
+            label12.Text = "ID:";
+            // 
+            // id
+            // 
+            id.Location = new Point(129, 197);
+            id.Name = "id";
+            id.Size = new Size(100, 23);
+            id.TabIndex = 8;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(131, 139);
+            label11.Name = "label11";
+            label11.Size = new Size(45, 15);
+            label11.TabIndex = 7;
+            label11.Text = "Center:";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(129, 157);
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.Size = new Size(100, 23);
+            textBox4.TabIndex = 6;
             // 
             // button1
             // 
@@ -219,7 +269,7 @@
             Movies.Location = new Point(4, 24);
             Movies.Name = "Movies";
             Movies.Padding = new Padding(3);
-            Movies.Size = new Size(249, 254);
+            Movies.Size = new Size(249, 262);
             Movies.TabIndex = 2;
             Movies.Text = "Movies";
             Movies.UseVisualStyleBackColor = true;
@@ -515,6 +565,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(Classes);
+            tabControl1.Controls.Add(Rectangles);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -522,38 +573,164 @@
             tabControl1.Size = new Size(800, 450);
             tabControl1.TabIndex = 0;
             // 
-            // textBox4
+            // Rectangles
             // 
-            textBox4.Location = new Point(129, 157);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 6;
+            Rectangles.BorderStyle = BorderStyle.FixedSingle;
+            Rectangles.Controls.Add(panel1);
+            Rectangles.Controls.Add(label18);
+            Rectangles.Controls.Add(label17);
+            Rectangles.Controls.Add(label16);
+            Rectangles.Controls.Add(label15);
+            Rectangles.Controls.Add(label14);
+            Rectangles.Controls.Add(textBox9);
+            Rectangles.Controls.Add(textBox8);
+            Rectangles.Controls.Add(textBox7);
+            Rectangles.Controls.Add(textBox6);
+            Rectangles.Controls.Add(textBox5);
+            Rectangles.Controls.Add(label13);
+            Rectangles.Controls.Add(button4);
+            Rectangles.Controls.Add(button3);
+            Rectangles.Controls.Add(listBox3);
+            Rectangles.Location = new Point(4, 24);
+            Rectangles.Name = "Rectangles";
+            Rectangles.Padding = new Padding(3);
+            Rectangles.Size = new Size(792, 422);
+            Rectangles.TabIndex = 2;
+            Rectangles.Text = "Rectangles";
+            Rectangles.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // panel1
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(131, 139);
-            label11.Name = "label11";
-            label11.Size = new Size(45, 15);
-            label11.TabIndex = 7;
-            label11.Text = "Center:";
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(224, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(559, 407);
+            panel1.TabIndex = 14;
             // 
-            // id
+            // label18
             // 
-            id.Location = new Point(129, 197);
-            id.Name = "id";
-            id.Size = new Size(100, 23);
-            id.TabIndex = 8;
+            label18.AutoSize = true;
+            label18.Location = new Point(46, 275);
+            label18.Name = "label18";
+            label18.Size = new Size(20, 15);
+            label18.TabIndex = 13;
+            label18.Text = "Id:";
             // 
-            // label12
+            // label17
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(132, 183);
-            label12.Name = "label12";
-            label12.Size = new Size(21, 15);
-            label12.TabIndex = 9;
-            label12.Text = "ID:";
+            label17.AutoSize = true;
+            label17.Location = new Point(49, 330);
+            label17.Name = "label17";
+            label17.Size = new Size(17, 15);
+            label17.TabIndex = 12;
+            label17.Text = "Y:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(24, 359);
+            label16.Name = "label16";
+            label16.Size = new Size(42, 15);
+            label16.TabIndex = 11;
+            label16.Text = "Width:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(24, 391);
+            label15.Name = "label15";
+            label15.Size = new Size(46, 15);
+            label15.TabIndex = 10;
+            label15.Text = "Height:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(49, 301);
+            label14.Name = "label14";
+            label14.Size = new Size(17, 15);
+            label14.TabIndex = 9;
+            label14.Text = "X:";
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(74, 272);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(100, 23);
+            textBox9.TabIndex = 8;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(74, 301);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(100, 23);
+            textBox8.TabIndex = 7;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(74, 330);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(100, 23);
+            textBox7.TabIndex = 6;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(74, 359);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(100, 23);
+            textBox6.TabIndex = 5;
+            textBox6.TextChanged += textBox6_TextChanged;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(74, 391);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(100, 23);
+            textBox5.TabIndex = 4;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(17, 254);
+            label13.Name = "label13";
+            label13.Size = new Size(109, 15);
+            label13.TabIndex = 3;
+            label13.Text = "Selected Rectangle:";
+            // 
+            // button4
+            // 
+            button4.FlatAppearance.BorderSize = 2;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button4.Location = new Point(164, 211);
+            button4.Name = "button4";
+            button4.Size = new Size(23, 23);
+            button4.TabIndex = 2;
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += deleteRectangle;
+            // 
+            // button3
+            // 
+            button3.FlatAppearance.BorderSize = 2;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button3.Location = new Point(74, 211);
+            button3.Name = "button3";
+            button3.Size = new Size(23, 23);
+            button3.TabIndex = 1;
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += addRectangle;
+            // 
+            // listBox3
+            // 
+            listBox3.FormattingEnabled = true;
+            listBox3.ItemHeight = 15;
+            listBox3.Location = new Point(17, 22);
+            listBox3.Name = "listBox3";
+            listBox3.Size = new Size(201, 169);
+            listBox3.TabIndex = 0;
+            listBox3.SelectedIndexChanged += listBox3_SelectedIndexChanged;
             // 
             // MainForm
             // 
@@ -565,8 +742,8 @@
             Text = "Form1";
             Classes.ResumeLayout(false);
             movieTab.ResumeLayout(false);
-            Rectangles.ResumeLayout(false);
-            Rectangles.PerformLayout();
+            Rectangle.ResumeLayout(false);
+            Rectangle.PerformLayout();
             Movies.ResumeLayout(false);
             Movies.PerformLayout();
             tabPage1.ResumeLayout(false);
@@ -578,6 +755,8 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabControl1.ResumeLayout(false);
+            Rectangles.ResumeLayout(false);
+            Rectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -585,7 +764,7 @@
 
         private TabPage Classes;
         private TabControl movieTab;
-        private TabPage Rectangles;
+        private TabPage Rectangle;
         private ListBox listBox1;
         private TabPage tabPage1;
         private TabControl seasonTab;
@@ -630,5 +809,21 @@
         private TextBox textBox4;
         private Label label12;
         private TextBox id;
+        private TabPage Rectangles;
+        private Button button3;
+        private ListBox listBox3;
+        private Button button4;
+        private Panel panel1;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private TextBox textBox9;
+        private TextBox textBox8;
+        private TextBox textBox7;
+        private TextBox textBox6;
+        private TextBox textBox5;
+        private Label label13;
     }
 }

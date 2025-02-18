@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Ring
     {
@@ -40,7 +40,7 @@ namespace Programming.Model
         }
         public double area()
         {
-            return (Math.PI * Math.Pow(outerRadius, 2)) - (Math.PI * Math.Pow(innerRadius, 2));
+            return Math.PI * Math.Pow(outerRadius, 2) - Math.PI * Math.Pow(innerRadius, 2);
         }
     }
 }

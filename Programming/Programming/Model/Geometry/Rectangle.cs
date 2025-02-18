@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Rectangle
     {
         private double width;
         private double height;
-        private String color;
+        private string color;
         private Point2D center;
-        private static int _allRectanglesCount = 0;
+        private static int _allRectanglesCount = 1;
         private int _id;
 
         public Rectangle(double width, double height, string color, Point2D center)
@@ -61,13 +61,17 @@ namespace Programming.Model
                 this.height = height;
             }
         }
-        public String getColor() 
+        public string getColor()
         {
             return color;
         }
-        public void setColor(String color)
+        public void setColor(string color)
         {
             this.color = color;
+        }
+        public string toString()
+        {
+            return $"{id()}: X = {Math.Round(center.getX())}; Y = {Math.Round(center.getY())}; W = {Math.Round(width)}; H = {Math.Round(height)}";
         }
     }
 }

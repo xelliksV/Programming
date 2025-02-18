@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Enums;
 
 namespace Programming.Model
 {
     internal class Movie
     {
-        private String name;
+        private string name;
         private int duration;
         private int yearOfRelease;
         private Genre genre;
@@ -18,7 +19,7 @@ namespace Programming.Model
         {
         }
 
-        public Movie(string name, int duration, int yearOfRelease, Model.Genre genre, double rating)
+        public Movie(string name, int duration, int yearOfRelease, Genre genre, double rating)
         {
             setName(name);
             setDuration(duration);
@@ -27,7 +28,7 @@ namespace Programming.Model
             setRating(rating);
         }
 
-        public String getName()
+        public string getName()
         {
             return name;
         }
@@ -39,7 +40,7 @@ namespace Programming.Model
         {
             return duration;
         }
-        public Model.Genre getGenre()
+        public Genre getGenre()
         {
             return genre;
         }
@@ -54,13 +55,13 @@ namespace Programming.Model
                 this.rating = rating;
             }
         }
-        public void setGenre(Model.Genre genre)
+        public void setGenre(Genre genre)
         {
             this.genre = genre;
         }
         public void setDuration(int duration)
         {
-            if(Validator.assertOnPositiveValue(duration))
+            if (Validator.assertOnPositiveValue(duration))
             {
                 this.duration = duration;
             }
@@ -72,7 +73,7 @@ namespace Programming.Model
                 this.yearOfRelease = yearOfRelease;
             }
         }
-        public void setName(String name)
+        public void setName(string name)
         {
             this.name = name;
         }
