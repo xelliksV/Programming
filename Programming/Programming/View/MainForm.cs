@@ -48,24 +48,24 @@ namespace Programming
         {
             try
             {
-                textBox1.BackColor = Color.White;
-                _currentRectangle.setWidth(Double.Parse(textBox1.Text));
+                textBox2.BackColor = Color.White;
+                _currentRectangle.setWidth(Double.Parse(textBox2.Text));
             }
             catch (Exception ex)
             {
-                textBox1.BackColor = Color.LightPink;
+                textBox2.BackColor = Color.LightPink;
             }
         }
         private void colorChanged(object? sender, EventArgs e)
         {
             try
             {
-                textBox1.BackColor = Color.White;
-                _currentRectangle.setColor(textBox1.Text);
+                textBox3.BackColor = Color.White;
+                _currentRectangle.setColor(textBox3.Text);
             }
             catch (Exception ex)
             {
-                textBox1.BackColor = Color.LightPink;
+                textBox3.BackColor = Color.LightPink;
             }
         }
         private int findRectangleWithMaxWidth(Model.Geometry.Rectangle[] rectangles)
