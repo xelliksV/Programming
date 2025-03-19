@@ -24,6 +24,8 @@ namespace Programming.Model.Geometry
             _id = _allRectanglesCount++;
         }
 
+
+
         public Rectangle()
         {
         }
