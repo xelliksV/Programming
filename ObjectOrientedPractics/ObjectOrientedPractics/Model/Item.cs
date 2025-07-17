@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -24,13 +25,10 @@ namespace ObjectOrientedPractics.Model
 
         public string Name { get { return _name; } set
             {
-                if (value.Length < 200)
+                if (ValueValidator.AssertStringOnLength(value, 200, "Name"))
                 {
                     _name = value;
-                } else
-                {
-                    throw new ArgumentException();
-                }
+                } 
             } }
         public double Cost
         {
@@ -48,13 +46,10 @@ namespace ObjectOrientedPractics.Model
         }
         public string Info { get { return _info; } set
             {
-                if (value.Length < 1000)
+                if (ValueValidator.AssertStringOnLength(value, 1000, "Info"))
                 {
                     _info = value; 
-                } else
-                {
-                    throw new ArgumentException();
-                }
+                } 
             }
         }
     }
