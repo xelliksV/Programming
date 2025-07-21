@@ -24,7 +24,10 @@ namespace ObjectOrientedPractics.Model
             Fullname = fullname;
             Address = address;
         }
-
+        public Customer() { 
+            _id = idCounter++;
+        }
+        public int Id { get { return _id; } }
         public string Fullname { get { return _fullname; } set
             {
                 if (value.Length < 200)
@@ -50,6 +53,11 @@ namespace ObjectOrientedPractics.Model
                     throw new ArgumentException();
                 }
             }
+        }
+
+        public override string? ToString()
+        {
+            return _fullname;
         }
     }
 }

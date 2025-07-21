@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemTab : UserControl
     {
-        private JsonSerialazer<Item> itemSerializer = new JsonSerialazer<Item>();
+        private JsonSerialazer<Item> itemSerializer = new JsonSerialazer<Item>("C:\\Users\\vlad4\\OneDrive\\Документы\\itemsData.json");
         private List<Item> _items = new List<Item>();
         public ItemTab()
         {
@@ -33,7 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private void updateListBox()
         {
-            File.WriteAllText("C:\\Users\\vlad4\\OneDrive\\Документы\\data.json", "[]");
+            itemSerializer.clear();
             itemSerializer.serialize(_items);
             itemsListBox.DataSource = null;
             itemsListBox.DataSource = _items;

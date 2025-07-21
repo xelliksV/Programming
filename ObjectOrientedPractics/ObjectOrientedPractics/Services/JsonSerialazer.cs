@@ -10,10 +10,12 @@ namespace ObjectOrientedPractics.Services
 {
     internal class JsonSerialazer<T> where T : class
     {
-
-        public JsonSerialazer() { }
+        private readonly string path;
+        public JsonSerialazer(string path) {
+            this.path = path;
+        }
         public void serialize(List<T> obj) {
-            FileStream outputStream = File.OpenWrite("C:\\Users\\vlad4\\OneDrive\\Документы\\data.json");
+            FileStream outputStream = File.OpenWrite(path);
             var ser = new DataContractJsonSerializer(typeof(List<T>));
             ser.WriteObject(outputStream, obj);
             outputStream.Close();
@@ -22,11 +24,15 @@ namespace ObjectOrientedPractics.Services
         {
             List<T> list = new List<T>();
             DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(List<T>));
-            using (MemoryStream Stream = new MemoryStream(Encoding.Unicode.GetBytes(File.ReadAllText("C:\\Users\\vlad4\\OneDrive\\Документы\\data.json"))))
+            using (MemoryStream Stream = new MemoryStream(Encoding.Unicode.GetBytes(File.ReadAllText(path))))
             {
                 list = json.ReadObject(Stream) as List<T>;
             }
             return list;
+        }
+        public void clear()
+        {
+            File.WriteAllText(path, "[]");
         }
     }
 }
