@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     internal class Customer
     {
         private static int idCounter = 1;
+        [DataMember]
         private readonly int _id;
+        [DataMember]
         private string _fullname;
+        [DataMember]
         private string _address;
 
         public Customer(string fullname, string address)

@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     internal class Item
     {
         private static long idCounter = 0;
+        [DataMember]
         private readonly long _id;
+        [DataMember]
         private string _name;
+        [DataMember]
         private string _info;
+        [DataMember]
         private double _cost;
 
         public Item(string name, double cost, string info)
@@ -22,7 +28,11 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             _id = idCounter++;
         }
-
+        public Item()
+        {
+            _id = idCounter++;
+        }
+        public long Id { get { return _id; } }
         public string Name { get { return _name; } set
             {
                 if (ValueValidator.AssertStringOnLength(value, 200, "Name"))
@@ -51,6 +61,11 @@ namespace ObjectOrientedPractics.Model
                     _info = value; 
                 } 
             }
+        }
+
+        public override string? ToString()
+        {
+            return Name;
         }
     }
 }
