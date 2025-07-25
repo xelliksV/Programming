@@ -29,6 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items = new List<Item>();
             }
+            categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
         }
         private void updateListBox()
@@ -45,6 +46,7 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
+            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items.Add(item);
             updateListBox();
         }
@@ -58,6 +60,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 costTextBox.Text = current.Cost.ToString();
                 nameTextBox.Text = current.Name.ToString();
                 infoTextBox.Text = current.Info.ToString();
+                categoryComboBox.Text = current.Category.ToString();
             }
             catch (Exception ex)
             {
@@ -118,6 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
+            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items[itemsListBox.SelectedIndex] = item;
             updateListBox();
         }
