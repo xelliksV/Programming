@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Model.Address address2 = new Model.Address();
             customersLabel = new Label();
             customersListBox = new ListBox();
             addButton = new Button();
@@ -36,11 +37,9 @@
             selectedLabel = new Label();
             idLabel = new Label();
             nameLabel = new Label();
-            addressLabel = new Label();
             idTextBox = new TextBox();
             nameTextBox = new TextBox();
-            addressTextBox = new TextBox();
-            panel1 = new Panel();
+            addressControl = new Controls.AddressControl();
             SuspendLayout();
             // 
             // customersLabel
@@ -121,15 +120,6 @@
             nameLabel.TabIndex = 7;
             nameLabel.Text = "Full name:";
             // 
-            // addressLabel
-            // 
-            addressLabel.AutoSize = true;
-            addressLabel.Location = new Point(312, 79);
-            addressLabel.Name = "addressLabel";
-            addressLabel.Size = new Size(52, 15);
-            addressLabel.TabIndex = 8;
-            addressLabel.Text = "Address:";
-            // 
             // idTextBox
             // 
             idTextBox.BorderStyle = BorderStyle.FixedSingle;
@@ -148,32 +138,27 @@
             nameTextBox.TabIndex = 10;
             nameTextBox.TextChanged += nameTextBox_TextChanged;
             // 
-            // addressTextBox
+            // addressControl
             // 
-            addressTextBox.BorderStyle = BorderStyle.FixedSingle;
-            addressTextBox.Location = new Point(377, 81);
-            addressTextBox.Multiline = true;
-            addressTextBox.Name = "addressTextBox";
-            addressTextBox.Size = new Size(351, 158);
-            addressTextBox.TabIndex = 11;
-            addressTextBox.TextChanged += addressTextBox_TextChanged;
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(312, 245);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(460, 315);
-            panel1.TabIndex = 12;
+            address2.Apartment = null;
+            address2.Building = null;
+            address2.City = null;
+            address2.Country = null;
+            address2.Index = 0;
+            address2.Street = null;
+            addressControl.Address = address2;
+            addressControl.Location = new Point(312, 81);
+            addressControl.Name = "addressControl";
+            addressControl.Size = new Size(463, 193);
+            addressControl.TabIndex = 11;
             // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel1);
-            Controls.Add(addressTextBox);
+            Controls.Add(addressControl);
             Controls.Add(nameTextBox);
             Controls.Add(idTextBox);
-            Controls.Add(addressLabel);
             Controls.Add(nameLabel);
             Controls.Add(idLabel);
             Controls.Add(selectedLabel);
@@ -198,10 +183,8 @@
         private Label selectedLabel;
         private Label idLabel;
         private Label nameLabel;
-        private Label addressLabel;
         private TextBox idTextBox;
         private TextBox nameTextBox;
-        private TextBox addressTextBox;
-        private Panel panel1;
+        private Controls.AddressControl addressControl;
     }
 }

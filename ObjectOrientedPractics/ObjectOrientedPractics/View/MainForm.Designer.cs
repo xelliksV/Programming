@@ -31,17 +31,17 @@
             tabControl1 = new TabControl();
             itemsTab = new TabPage();
             itemTab1 = new View.Tabs.ItemTab();
-            customersPage = new TabPage();
-            customersTab = new View.Tabs.CustomersTab();
+            Customers = new TabPage();
+            customersTab1 = new View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             itemsTab.SuspendLayout();
-            customersPage.SuspendLayout();
+            Customers.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(itemsTab);
-            tabControl1.Controls.Add(customersPage);
+            tabControl1.Controls.Add(Customers);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -69,24 +69,23 @@
             itemTab1.TabIndex = 0;
             itemTab1.Load += itemTab1_Load;
             // 
-            // customersPage
+            // Customers
             // 
-            customersPage.Controls.Add(customersTab);
-            customersPage.Location = new Point(4, 24);
-            customersPage.Name = "customersPage";
-            customersPage.Padding = new Padding(3);
-            customersPage.Size = new Size(792, 567);
-            customersPage.TabIndex = 2;
-            customersPage.Text = "Customers";
-            customersPage.UseVisualStyleBackColor = true;
+            Customers.Controls.Add(customersTab1);
+            Customers.Location = new Point(4, 24);
+            Customers.Name = "Customers";
+            Customers.Padding = new Padding(3);
+            Customers.Size = new Size(792, 567);
+            Customers.TabIndex = 2;
+            Customers.Text = "Customers";
+            Customers.UseVisualStyleBackColor = true;
             // 
-            // customersTab
+            // customersTab1
             // 
-            customersTab.Dock = DockStyle.Fill;
-            customersTab.Location = new Point(3, 3);
-            customersTab.Name = "customersTab";
-            customersTab.Size = new Size(786, 561);
-            customersTab.TabIndex = 0;
+            customersTab1.Location = new Point(0, 0);
+            customersTab1.Name = "customersTab1";
+            customersTab1.Size = new Size(775, 563);
+            customersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -98,7 +97,7 @@
             Text = "Object Oriented Practics";
             tabControl1.ResumeLayout(false);
             itemsTab.ResumeLayout(false);
-            customersPage.ResumeLayout(false);
+            Customers.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -107,7 +106,7 @@
         private TabControl tabControl1;
         private TabPage itemsTab;
         private View.Tabs.ItemTab itemTab1;
-        private TabPage customersPage;
-        private View.Tabs.CustomersTab customersTab;
+        private TabPage Customers;
+        private View.Tabs.CustomersTab customersTab1;
     }
 }

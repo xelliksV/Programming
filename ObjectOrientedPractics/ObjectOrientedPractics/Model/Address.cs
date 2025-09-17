@@ -9,7 +9,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
     [DataContract]
-    internal class Address
+    public class Address
     {
         [DataMember]
         private int _index;
@@ -54,6 +54,9 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 50, "Country"))
                 {
                     _country = value;
+                } else
+                {
+                    _country = " ";
                 }
             }
         }
@@ -65,6 +68,9 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 50, "City"))
                 {
                     _city = value;
+                } else
+                {
+                    _city = " ";
                 }
             }
         }
@@ -76,6 +82,9 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 100, "Street"))
                 {
                     _street = value;
+                } else
+                {
+                    _street = " ";
                 }
             }
         }
@@ -87,6 +96,9 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 10, "Building"))
                 {
                     _building = value;
+                } else
+                {
+                    _building = " ";
                 }
             }
         }
@@ -98,6 +110,9 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 10, "Apartment"))
                 {
                     _apartment = value;
+                } else
+                {
+                    _apartment = " ";
                 }
             }
         }

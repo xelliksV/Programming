@@ -23,7 +23,8 @@ namespace ObjectOrientedPractics.View.Tabs
             _items = itemSerializer.deserialize();
             if (_items != null)
             {
-                itemsListBox.DataSource = _items;
+                _items.ForEach(x => itemsListBox.Items.Add(x));
+
             }
             else
             {
@@ -32,12 +33,13 @@ namespace ObjectOrientedPractics.View.Tabs
             categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
         }
+        public List<Item> Items { get { return _items; } set { _items = value; } }
         private void updateListBox()
         {
             itemSerializer.clear();
             itemSerializer.serialize(_items);
-            itemsListBox.DataSource = null;
-            itemsListBox.DataSource = _items;
+            itemsListBox.Items.Clear();
+            _items.ForEach(x => itemsListBox.Items.Add(x));
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
