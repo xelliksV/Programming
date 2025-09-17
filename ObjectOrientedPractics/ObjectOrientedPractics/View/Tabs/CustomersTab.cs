@@ -21,18 +21,12 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            customers = serialazer.deserialize();
-            if (customers.Capacity > 0)
-            {
-                addressControl.Address = customers[0].Address;
-                customers.ForEach(x => customersListBox.Items.Add(x));
-
-                addressControl.updateControl();
-            } else
-            {
-                customers = new List<Customer>();
-            }
         }
+        public List<Customer> Customers { get { return customers; } set
+            {
+                customers = value;
+                updateListBox();
+            } }
         private void updateListBox()
         {
             serialazer.clear();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal enum Category
+    public enum Category
     {
         FLASHCARD,
         CHARGER,

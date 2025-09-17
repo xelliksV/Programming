@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     [DataContract]
-    internal class Customer
+    public class Customer
     {
         private static int idCounter = 1;
         [DataMember]

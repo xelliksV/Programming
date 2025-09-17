@@ -10,7 +10,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
     [DataContract]
-    internal class Item
+    public class Item
     {
         private static long idCounter = 0;
         [DataMember]

@@ -20,20 +20,16 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemTab()
         {
             InitializeComponent();
-            _items = itemSerializer.deserialize();
-            if (_items != null)
-            {
-                _items.ForEach(x => itemsListBox.Items.Add(x));
-
-            }
-            else
-            {
-                _items = new List<Item>();
-            }
-            categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
         }
-        public List<Item> Items { get { return _items; } set { _items = value; } }
+        public List<Item> Items
+        {
+            get { return _items; } set
+            {
+                _items = value;
+                updateListBox();
+            }
+        }
         private void updateListBox()
         {
             itemSerializer.clear();
