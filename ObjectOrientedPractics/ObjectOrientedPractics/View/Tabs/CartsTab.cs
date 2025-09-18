@@ -8,14 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
+        private Store store = new Store();
         private Customer currentCustomer;
         private List<Item> items = new List<Item>();
         private List<Customer> customers = new List<Customer>();
+        private JsonSerialazer<Item> itemSerializer = new JsonSerialazer<Item>("C:\\Users\\vlad4\\OneDrive\\Документы\\itemsData.json");
+        private JsonSerialazer<Customer> serialazer = new JsonSerialazer<Customer>("C:\\Users\\vlad4\\OneDrive\\Документы\\customersData.json");
         public CartsTab()
         {
             InitializeComponent();
@@ -41,13 +46,56 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentCustomer = customers[customerComboBox.SelectedIndex];
-            currentCustomer.Cart.Items.ForEach(x => itemsListBox.Items.Add(x));
+            currentCustomer = (Customer)customerComboBox.SelectedItem;
+            cartListBox.Items.Clear();
+            if (currentCustomer.Cart.Items.Count > 0)
+            {
+                currentCustomer.Cart.Items.ForEach(x => cartListBox.Items.Add(x));
+            }
+            
+            amountLabel.Text = currentCustomer.Cart.Amount.ToString();
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            currentCustomer.Cart.Items.Add((Item)itemsListBox.SelectedItem);
+            if (currentCustomer.Cart != null)
+            {
+                currentCustomer.Cart.Items.Add((Item)itemsListBox.SelectedItem);
+            }
+            cartListBox.Items.Add((Item)itemsListBox.SelectedItem);
+            store.updateCustomersData(customers);
+            amountLabel.Text = currentCustomer.Cart.Amount.ToString();
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart));
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            Item item = (Item)cartListBox.SelectedItem;
+            currentCustomer.Cart.Items.Remove(item);
+            cartListBox.Items.Remove(item);
+            amountLabel.Text = currentCustomer.Cart.Amount.ToString();
+            store.updateCustomersData(customers);
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            currentCustomer.Cart.Items.Clear();
+            cartListBox.Items.Clear();
+            amountLabel.Text = currentCustomer.Cart.Amount.ToString();
+            store.updateCustomersData(customers);
+        }
+        public void refreshData()
+        {
+            itemsListBox.Items.Clear();
+            items = itemSerializer.deserialize();
+            items.ForEach(item => itemsListBox.Items.Add(item));
+            customerComboBox.Items.Clear();
+            customers = serialazer.deserialize();
+            customers.ForEach(c => customerComboBox.Items.Add(c));
         }
     }
 }

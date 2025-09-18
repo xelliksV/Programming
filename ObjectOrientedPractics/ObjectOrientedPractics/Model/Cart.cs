@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     public class Cart
     {
+        [DataMember]
         private List<Item> items = new List<Item>();
-        public Cart() { }
-        public List<Item> Items { get; set; }
+        public Cart() {
+            
+        }
+        public List<Item> Items { get { return items; } set { items = value; } }
         public double Amount
         {
             get

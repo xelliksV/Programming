@@ -41,7 +41,10 @@ namespace ObjectOrientedPractics.View.Tabs
             Customer customer = customersListBox.SelectedItem as Customer;
             idTextBox.Text = customer.Id.ToString();
             nameTextBox.Text = customer.Fullname;
-            addressControl.Address = customer.Address;
+            if (customer.Address != null)
+            {
+                addressControl.Address = customer.Address;
+            }
             addressControl.updateControl();
         }
 
@@ -63,7 +66,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Customer customer = new Customer();
             customer.Fullname = nameTextBox.Text;
-            customer.Address = new Address();
+            customer.Address = addressControl.Address;
             customers.Add(customer);
             updateListBox();
         }

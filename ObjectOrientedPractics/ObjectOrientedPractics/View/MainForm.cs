@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics
     public partial class MainForm : Form
     {
         private Store _store = new Store();
-     
+
         public MainForm()
         {
             InitializeComponent();
@@ -18,7 +18,19 @@ namespace ObjectOrientedPractics
 
         private void itemTab1_Load(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void cartsTab1_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void selectedTabChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 2)
+            {
+                cartsTab1.refreshData();
+            }
         }
     }
 }

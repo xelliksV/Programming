@@ -53,6 +53,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(800, 595);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += selectedTabChanged;
             // 
             // itemsTab
             // 
@@ -109,6 +110,7 @@
             cartsTab1.Name = "cartsTab1";
             cartsTab1.Size = new Size(789, 555);
             cartsTab1.TabIndex = 0;
+            cartsTab1.Load += cartsTab1_Load;
             // 
             // MainForm
             // 

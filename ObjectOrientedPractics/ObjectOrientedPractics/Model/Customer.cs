@@ -26,15 +26,18 @@ namespace ObjectOrientedPractics.Model
             _id  = idCounter++;
             Fullname = fullname;
             Address = address;
-            _cart = new Cart();
+            Cart = new Cart();
         }
         public Customer() { 
             _id = idCounter++;
+            _cart = new Cart();
+            _orders = new List<Order>();
         }
         public Cart Cart
         {
-            get; set;
+            get { return _cart; } set { _cart = value; }
         }
+        public List<Order> Orders { get { return _orders; } set { _orders = value; } }
         public int Id { get { return _id; } }
         public string Fullname { get { return _fullname; } set
             {

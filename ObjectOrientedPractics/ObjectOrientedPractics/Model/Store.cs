@@ -8,7 +8,7 @@ using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Store
+    public class Store
     {
         private List<Item> _items = new List<Item>();
         private List<Customer> customers = new List<Customer>();
@@ -30,6 +30,16 @@ namespace ObjectOrientedPractics.Model
         }
         public List<Item> Items { get { return _items; } set { _items = value; } }  
         public List<Customer> Customers { get { return customers; } set { customers = value; } }
+        public void updateItemsData(List<Item> items)
+        {
+            itemSerializer.clear();
+            itemSerializer.serialize(items);
+        }
+        public void updateCustomersData(List<Customer> customers)
+        {
+            serialazer.clear();
+            serialazer.serialize(customers);
+        }
 
     }
 }

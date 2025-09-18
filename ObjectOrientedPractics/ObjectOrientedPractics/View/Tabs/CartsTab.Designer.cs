@@ -39,7 +39,7 @@
             clearButton = new Button();
             removeButton = new Button();
             label1 = new Label();
-            label2 = new Label();
+            amountLabel = new Label();
             SuspendLayout();
             // 
             // itemLabel
@@ -116,6 +116,7 @@
             createButton.TabIndex = 7;
             createButton.Text = "Create Order";
             createButton.UseVisualStyleBackColor = true;
+            createButton.Click += createButton_Click;
             // 
             // clearButton
             // 
@@ -125,6 +126,7 @@
             clearButton.TabIndex = 8;
             clearButton.Text = "Clear cart";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // removeButton
             // 
@@ -134,6 +136,7 @@
             removeButton.TabIndex = 9;
             removeButton.Text = "Remove item";
             removeButton.UseVisualStyleBackColor = true;
+            removeButton.Click += removeButton_Click;
             // 
             // label1
             // 
@@ -144,20 +147,20 @@
             label1.TabIndex = 10;
             label1.Text = "Amount:";
             // 
-            // label2
+            // amountLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(745, 273);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 11;
-            label2.Text = "label2";
+            amountLabel.AutoSize = true;
+            amountLabel.Location = new Point(745, 273);
+            amountLabel.Name = "amountLabel";
+            amountLabel.Size = new Size(38, 15);
+            amountLabel.TabIndex = 11;
+            amountLabel.Text = "label2";
             // 
             // CartsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label2);
+            Controls.Add(amountLabel);
             Controls.Add(label1);
             Controls.Add(removeButton);
             Controls.Add(clearButton);
@@ -188,6 +191,6 @@
         private Button clearButton;
         private Button removeButton;
         private Label label1;
-        private Label label2;
+        private Label amountLabel;
     }
 }

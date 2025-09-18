@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemTab()
         {
             InitializeComponent();
-
+            categoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
         public List<Item> Items
         {
