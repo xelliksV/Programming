@@ -19,6 +19,8 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
         [DataMember]
         private Cart _cart;
+        [DataMember]
+        private List<Order> _orders;
         public Customer(string fullname, Address address)
         {
             _id  = idCounter++;
