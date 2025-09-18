@@ -10,6 +10,8 @@ namespace ObjectOrientedPractics.Services
     {
         public static bool AssertStringOnLength(string value, int maxLength, string propertyName)
         {
+            if (value == null) return false;
+
             if (value.Length >  maxLength)
             {
                 throw new ArgumentException(propertyName + " должен быть меньше " + maxLength + " символов");

@@ -1,13 +1,17 @@
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        private Store _store = new Store();
      
         public MainForm()
         {
             InitializeComponent();
+            itemTab1.Items = _store.Items;
+            customersTab1.Customers = _store.Customers;
         }
 
         private void itemTab1_Load(object sender, EventArgs e)

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
     [DataContract]
-    internal class Item
+    public class Item
     {
         private static long idCounter = 0;
         [DataMember]
@@ -20,13 +21,16 @@ namespace ObjectOrientedPractics.Model
         private string _info;
         [DataMember]
         private double _cost;
+        [DataMember]
+        private Category _category;
 
-        public Item(string name, double cost, string info)
+        public Item(string name, double cost, string info, Category category)
         {
             Name = name;
             Cost = cost;
             Info = info;
             _id = idCounter++;
+            Category = category;
         }
         public Item()
         {
@@ -62,6 +66,7 @@ namespace ObjectOrientedPractics.Model
                 } 
             }
         }
+        public Category Category { get; set; }  
 
         public override string? ToString()
         {

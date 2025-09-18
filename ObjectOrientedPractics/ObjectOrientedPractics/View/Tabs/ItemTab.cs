@@ -20,23 +20,22 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemTab()
         {
             InitializeComponent();
-            _items = itemSerializer.deserialize();
-            if (_items != null)
-            {
-                itemsListBox.DataSource = _items;
-            }
-            else
-            {
-                _items = new List<Item>();
-            }
 
+        }
+        public List<Item> Items
+        {
+            get { return _items; } set
+            {
+                _items = value;
+                updateListBox();
+            }
         }
         private void updateListBox()
         {
             itemSerializer.clear();
             itemSerializer.serialize(_items);
-            itemsListBox.DataSource = null;
-            itemsListBox.DataSource = _items;
+            itemsListBox.Items.Clear();
+            _items.ForEach(x => itemsListBox.Items.Add(x));
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -45,6 +44,7 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
+            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items.Add(item);
             updateListBox();
         }
@@ -58,6 +58,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 costTextBox.Text = current.Cost.ToString();
                 nameTextBox.Text = current.Name.ToString();
                 infoTextBox.Text = current.Info.ToString();
+                categoryComboBox.Text = current.Category.ToString();
             }
             catch (Exception ex)
             {
@@ -118,6 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
+            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items[itemsListBox.SelectedIndex] = item;
             updateListBox();
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     [DataContract]
-    internal class Customer
+    public class Customer
     {
         private static int idCounter = 1;
         [DataMember]
@@ -16,9 +16,9 @@ namespace ObjectOrientedPractics.Model
         [DataMember]
         private string _fullname;
         [DataMember]
-        private string _address;
+        private Address _address;
 
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
             _id  = idCounter++;
             Fullname = fullname;
@@ -39,19 +39,12 @@ namespace ObjectOrientedPractics.Model
                 }
             } 
         }
-        public string Address
+        public Address Address
         {
             get { return _address; }
             set
             {
-                if (value.Length < 500)
-                {
-                    _address = value;
-                }
-                else
-                {
-                    throw new ArgumentException();
-                }
+                _address = value;
             }
         }
 

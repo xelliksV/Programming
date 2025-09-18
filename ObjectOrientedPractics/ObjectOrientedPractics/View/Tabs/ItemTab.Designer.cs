@@ -42,6 +42,8 @@
             nameTextBox = new TextBox();
             infoTextBox = new TextBox();
             refactorButton = new Button();
+            categoryLabel = new Label();
+            categoryComboBox = new ComboBox();
             SuspendLayout();
             // 
             // itemsLabel
@@ -115,7 +117,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(357, 93);
+            nameLabel.Location = new Point(357, 123);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(42, 15);
             nameLabel.TabIndex = 7;
@@ -124,7 +126,7 @@
             // infoLabel
             // 
             infoLabel.AutoSize = true;
-            infoLabel.Location = new Point(357, 215);
+            infoLabel.Location = new Point(357, 245);
             infoLabel.Name = "infoLabel";
             infoLabel.Size = new Size(31, 15);
             infoLabel.TabIndex = 8;
@@ -133,7 +135,7 @@
             // idTextBox
             // 
             idTextBox.BorderStyle = BorderStyle.FixedSingle;
-            idTextBox.Location = new Point(394, 28);
+            idTextBox.Location = new Point(420, 28);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
             idTextBox.Size = new Size(122, 23);
@@ -143,7 +145,7 @@
             // 
             costTextBox.BackColor = SystemColors.Control;
             costTextBox.BorderStyle = BorderStyle.FixedSingle;
-            costTextBox.Location = new Point(394, 62);
+            costTextBox.Location = new Point(420, 60);
             costTextBox.Name = "costTextBox";
             costTextBox.Size = new Size(122, 23);
             costTextBox.TabIndex = 10;
@@ -153,7 +155,7 @@
             // 
             nameTextBox.BackColor = SystemColors.Control;
             nameTextBox.BorderStyle = BorderStyle.FixedSingle;
-            nameTextBox.Location = new Point(357, 111);
+            nameTextBox.Location = new Point(357, 141);
             nameTextBox.Multiline = true;
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(518, 101);
@@ -164,7 +166,7 @@
             // 
             infoTextBox.BackColor = SystemColors.Control;
             infoTextBox.BorderStyle = BorderStyle.FixedSingle;
-            infoTextBox.Location = new Point(357, 233);
+            infoTextBox.Location = new Point(357, 263);
             infoTextBox.Multiline = true;
             infoTextBox.Name = "infoTextBox";
             infoTextBox.Size = new Size(518, 181);
@@ -181,10 +183,29 @@
             refactorButton.UseVisualStyleBackColor = true;
             refactorButton.Click += refactorButton_Click;
             // 
+            // categoryLabel
+            // 
+            categoryLabel.AutoSize = true;
+            categoryLabel.Location = new Point(357, 98);
+            categoryLabel.Name = "categoryLabel";
+            categoryLabel.Size = new Size(58, 15);
+            categoryLabel.TabIndex = 14;
+            categoryLabel.Text = "Category:";
+            // 
+            // categoryComboBox
+            // 
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Location = new Point(420, 95);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(121, 23);
+            categoryComboBox.TabIndex = 15;
+            // 
             // ItemTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(categoryComboBox);
+            Controls.Add(categoryLabel);
             Controls.Add(refactorButton);
             Controls.Add(infoTextBox);
             Controls.Add(nameTextBox);
@@ -221,5 +242,7 @@
         private TextBox nameTextBox;
         private TextBox infoTextBox;
         private Button refactorButton;
+        private Label categoryLabel;
+        private ComboBox categoryComboBox;
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -20,21 +21,19 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            customers = serialazer.deserialize();
-            if (customers != null)
-            {
-                customersListBox.DataSource = customers;
-            } else
-            {
-                customers = new List<Customer>();
-            }
         }
+        public List<Customer> Customers { get { return customers; } set
+            {
+                customers = value;
+                updateListBox();
+            } }
         private void updateListBox()
         {
             serialazer.clear();
             serialazer.serialize(customers);
-            customersListBox.DataSource = null;
-            customersListBox.DataSource = customers;
+            customersListBox.Items.Clear();
+            customers.ForEach(x => customersListBox.Items.Add(x));
+            addressControl.updateControl();
         }
 
         private void customersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,7 +41,8 @@ namespace ObjectOrientedPractics.View.Tabs
             Customer customer = customersListBox.SelectedItem as Customer;
             idTextBox.Text = customer.Id.ToString();
             nameTextBox.Text = customer.Fullname;
-            addressTextBox.Text = customer.Address;
+            addressControl.Address = customer.Address;
+            addressControl.updateControl();
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
@@ -58,24 +58,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void addressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                new Customer().Address = addressTextBox.Text;
-                addressTextBox.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                addressTextBox.BackColor = Color.LightPink;
-            }
-        }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer();
             customer.Fullname = nameTextBox.Text;
-            customer.Address = addressTextBox.Text;
+            customer.Address = new Address();
             customers.Add(customer);
             updateListBox();
         }
@@ -90,8 +78,9 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Customer customer = new Customer();
             customer.Fullname = nameTextBox.Text;
-            customer.Address = addressTextBox.Text;
+            customer.Address = addressControl.Address;
             customers[customersListBox.SelectedIndex] = customer;
+            addressControl.updateControl();
             updateListBox();
         }
     }
