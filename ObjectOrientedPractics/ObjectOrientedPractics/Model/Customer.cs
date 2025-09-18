@@ -27,6 +27,7 @@ namespace ObjectOrientedPractics.Model
         public Customer() { 
             _id = idCounter++;
         }
+        public Cart Cart { get; set; }
         public int Id { get { return _id; } }
         public string Fullname { get { return _fullname; } set
             {
