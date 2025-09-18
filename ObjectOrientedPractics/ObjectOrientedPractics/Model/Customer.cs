@@ -17,17 +17,22 @@ namespace ObjectOrientedPractics.Model
         private string _fullname;
         [DataMember]
         private Address _address;
-
+        [DataMember]
+        private Cart _cart;
         public Customer(string fullname, Address address)
         {
             _id  = idCounter++;
             Fullname = fullname;
             Address = address;
+            _cart = new Cart();
         }
         public Customer() { 
             _id = idCounter++;
         }
-        public Cart Cart { get; set; }
+        public Cart Cart
+        {
+            get; set;
+        }
         public int Id { get { return _id; } }
         public string Fullname { get { return _fullname; } set
             {
