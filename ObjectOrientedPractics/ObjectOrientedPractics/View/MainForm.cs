@@ -12,6 +12,8 @@ namespace ObjectOrientedPractics
             InitializeComponent();
             itemTab1.Items = _store.Items;
             customersTab1.Customers = _store.Customers;
+            cartsTab1.Items = _store.Items;
+            cartsTab1.Customers = _store.Customers;
         }
 
         private void itemTab1_Load(object sender, EventArgs e)

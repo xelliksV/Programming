@@ -28,20 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             itemsTab = new TabPage();
             itemTab1 = new View.Tabs.ItemTab();
             Customers = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
+            cartsPage = new TabPage();
+            cartsTab1 = new View.Tabs.CartsTab();
             tabControl1.SuspendLayout();
             itemsTab.SuspendLayout();
             Customers.SuspendLayout();
+            cartsPage.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(itemsTab);
             tabControl1.Controls.Add(Customers);
+            tabControl1.Controls.Add(cartsPage);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -87,6 +92,24 @@
             customersTab1.Size = new Size(775, 563);
             customersTab1.TabIndex = 0;
             // 
+            // cartsPage
+            // 
+            cartsPage.Controls.Add(cartsTab1);
+            cartsPage.Location = new Point(4, 24);
+            cartsPage.Name = "cartsPage";
+            cartsPage.Padding = new Padding(3);
+            cartsPage.Size = new Size(792, 567);
+            cartsPage.TabIndex = 3;
+            cartsPage.Text = "Carts";
+            cartsPage.UseVisualStyleBackColor = true;
+            // 
+            // cartsTab1
+            // 
+            cartsTab1.Location = new Point(0, 0);
+            cartsTab1.Name = "cartsTab1";
+            cartsTab1.Size = new Size(789, 555);
+            cartsTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -98,6 +121,7 @@
             tabControl1.ResumeLayout(false);
             itemsTab.ResumeLayout(false);
             Customers.ResumeLayout(false);
+            cartsPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -108,5 +132,7 @@
         private View.Tabs.ItemTab itemTab1;
         private TabPage Customers;
         private View.Tabs.CustomersTab customersTab1;
+        private TabPage cartsPage;
+        private View.Tabs.CartsTab cartsTab1;
     }
 }
