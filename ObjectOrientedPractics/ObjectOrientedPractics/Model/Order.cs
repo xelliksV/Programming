@@ -23,13 +23,23 @@ namespace ObjectOrientedPractics.Model
         private double _amount;
         [DataMember]
         private OrderStatus _status;
+        [DataMember]
+        private string _name;
 
-        public Order(Address address, Cart cart) {
+        public Order(Address address, Cart cart, string name) {
             _address = address;
             _cart = cart;
             _createdTime = DateTime.Now;
             _amount = cart.Amount;
             _id = nextId++;
+            _name = name;
         }
+        public long Id { get { return _id; } }
+        public string Name { get { return _name; } }
+        public DateTime TimeCreated { get { return _createdTime; } }
+        public Address Address { get { return _address; } }
+        public Cart Cart { get { return _cart; } }
+        public double Amount { get { return _amount; } }
+        public OrderStatus Status { get { return _status; } }
     }
 }

@@ -14,6 +14,8 @@ namespace ObjectOrientedPractics
             customersTab1.Customers = _store.Customers;
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
+            ordersTab1.Customers = _store.Customers;
+            ordersTab1.getAllOrders();
         }
 
         private void itemTab1_Load(object sender, EventArgs e)
@@ -30,6 +32,10 @@ namespace ObjectOrientedPractics
             if (tabControl1.SelectedIndex == 2)
             {
                 cartsTab1.refreshData();
+            }
+            else if (tabControl1.SelectedIndex == 3)
+            {
+                ordersTab1.updateOrders();
             }
         }
     }

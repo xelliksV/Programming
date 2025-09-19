@@ -36,10 +36,13 @@
             customersTab1 = new View.Tabs.CustomersTab();
             cartsPage = new TabPage();
             cartsTab1 = new View.Tabs.CartsTab();
+            ordersTab = new TabPage();
+            ordersTab1 = new View.Tabs.OrdersTab();
             tabControl1.SuspendLayout();
             itemsTab.SuspendLayout();
             Customers.SuspendLayout();
             cartsPage.SuspendLayout();
+            ordersTab.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -47,11 +50,12 @@
             tabControl1.Controls.Add(itemsTab);
             tabControl1.Controls.Add(Customers);
             tabControl1.Controls.Add(cartsPage);
+            tabControl1.Controls.Add(ordersTab);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 595);
+            tabControl1.Size = new Size(856, 595);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += selectedTabChanged;
             // 
@@ -61,7 +65,7 @@
             itemsTab.Location = new Point(4, 24);
             itemsTab.Name = "itemsTab";
             itemsTab.Padding = new Padding(3);
-            itemsTab.Size = new Size(792, 567);
+            itemsTab.Size = new Size(848, 567);
             itemsTab.TabIndex = 1;
             itemsTab.Text = "Items";
             itemsTab.UseVisualStyleBackColor = true;
@@ -71,7 +75,7 @@
             itemTab1.Dock = DockStyle.Fill;
             itemTab1.Location = new Point(3, 3);
             itemTab1.Name = "itemTab1";
-            itemTab1.Size = new Size(786, 561);
+            itemTab1.Size = new Size(842, 561);
             itemTab1.TabIndex = 0;
             itemTab1.Load += itemTab1_Load;
             // 
@@ -81,7 +85,7 @@
             Customers.Location = new Point(4, 24);
             Customers.Name = "Customers";
             Customers.Padding = new Padding(3);
-            Customers.Size = new Size(792, 567);
+            Customers.Size = new Size(848, 567);
             Customers.TabIndex = 2;
             Customers.Text = "Customers";
             Customers.UseVisualStyleBackColor = true;
@@ -99,7 +103,7 @@
             cartsPage.Location = new Point(4, 24);
             cartsPage.Name = "cartsPage";
             cartsPage.Padding = new Padding(3);
-            cartsPage.Size = new Size(792, 567);
+            cartsPage.Size = new Size(848, 567);
             cartsPage.TabIndex = 3;
             cartsPage.Text = "Carts";
             cartsPage.UseVisualStyleBackColor = true;
@@ -112,11 +116,29 @@
             cartsTab1.TabIndex = 0;
             cartsTab1.Load += cartsTab1_Load;
             // 
+            // ordersTab
+            // 
+            ordersTab.Controls.Add(ordersTab1);
+            ordersTab.Location = new Point(4, 24);
+            ordersTab.Name = "ordersTab";
+            ordersTab.Padding = new Padding(3);
+            ordersTab.Size = new Size(848, 567);
+            ordersTab.TabIndex = 4;
+            ordersTab.Text = "Orders";
+            ordersTab.UseVisualStyleBackColor = true;
+            // 
+            // ordersTab1
+            // 
+            ordersTab1.Location = new Point(0, 0);
+            ordersTab1.Name = "ordersTab1";
+            ordersTab1.Size = new Size(903, 576);
+            ordersTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 595);
+            ClientSize = new Size(856, 595);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Object Oriented Practics";
@@ -124,6 +146,7 @@
             itemsTab.ResumeLayout(false);
             Customers.ResumeLayout(false);
             cartsPage.ResumeLayout(false);
+            ordersTab.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -136,5 +159,7 @@
         private View.Tabs.CustomersTab customersTab1;
         private TabPage cartsPage;
         private View.Tabs.CartsTab cartsTab1;
+        private TabPage ordersTab;
+        private View.Tabs.OrdersTab ordersTab1;
     }
 }
