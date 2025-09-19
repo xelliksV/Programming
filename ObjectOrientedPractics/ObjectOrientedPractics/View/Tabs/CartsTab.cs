@@ -69,7 +69,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart));
+            currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart, currentCustomer.Fullname));
+            store.updateCustomersData(customers);
         }
 
         private void removeButton_Click(object sender, EventArgs e)
