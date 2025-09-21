@@ -34,12 +34,13 @@ namespace ObjectOrientedPractics.Model
             _id = nextId++;
             _name = name;
         }
+        public Order() { }
         public long Id { get { return _id; } }
         public string Name { get { return _name; } }
         public DateTime TimeCreated { get { return _createdTime; } }
         public Address Address { get { return _address; } }
         public Cart Cart { get { return _cart; } }
         public double Amount { get { return _amount; } }
-        public OrderStatus Status { get { return _status; } }
+        public OrderStatus Status { get { return _status; } set { _status = value; } }
     }
 }

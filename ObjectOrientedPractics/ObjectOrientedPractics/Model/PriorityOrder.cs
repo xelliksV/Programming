@@ -16,5 +16,7 @@ namespace ObjectOrientedPractics.Model
             _date = date;
             _time = time;
         }
+        public PriorityOrder() { }
+        public String Time { get { return _time; } set { _time = value; } }
     }
 }
