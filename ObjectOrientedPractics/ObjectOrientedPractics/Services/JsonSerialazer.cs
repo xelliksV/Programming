@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
@@ -15,20 +16,13 @@ namespace ObjectOrientedPractics.Services
             this.path = path;
         }
         public void serialize(List<T> obj) {
-            FileStream outputStream = File.OpenWrite(path);
-            var ser = new DataContractJsonSerializer(typeof(List<T>));
-            ser.WriteObject(outputStream, obj);
-            outputStream.Close();
+            string json = JsonSerializer.Serialize(obj);
+            File.WriteAllText(path, json);
         }
         public List<T> deserialize()
         {
-            List<T> list = new List<T>();
-            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(List<T>));
-            using (MemoryStream Stream = new MemoryStream(Encoding.Unicode.GetBytes(File.ReadAllText(path))))
-            {
-                list = json.ReadObject(Stream) as List<T>;
-            }
-            return list;
+            string json = File.ReadAllText(path);
+            return JsonSerializer.Deserialize<List<T>>(json);
         }
         public void clear()
         {

@@ -13,6 +13,9 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class OrdersTab : UserControl
     {
+        private Order _selectedOrder;
+        private Store _store = new Store();
+        private PriorityOrder _selectedPriorityOrder;
         private List<Customer> customers = new List<Customer>();
         private List<Order> orders = new List<Order>();
         public OrdersTab()
@@ -34,7 +37,13 @@ namespace ObjectOrientedPractics.View.Tabs
             dataGridView1.Rows.Clear();
             foreach (Order order in orders)
             {
-                dataGridView1.Rows.Add(order.Id, order.TimeCreated.ToString(), order.Status.ToString(), order.Name, order.Address.ToString(), order.Amount);
+                try
+                {
+                    dataGridView1.Rows.Add(order.Id, order.TimeCreated.ToString(), order.Status.ToString(), order.Name, order.Address.ToString(), order.Amount);
+                }
+                catch (Exception ex)
+                {
+                }
             }
         }
 
@@ -47,12 +56,34 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 if (order.Id == long.Parse(idTextBox.Text))
                 {
+                    _selectedOrder = order;
+                    if (order.GetType() == typeof(PriorityOrder))
+                    {
+                        _selectedPriorityOrder = (PriorityOrder) order;
+                        priorityLabel.Visible = true;
+                        deliveryLabel.Visible = true;
+                        timeComboBox.Visible = true;
+                        timeComboBox.Text = _selectedPriorityOrder.Time;
+                    }
+                    else
+                    {
+                        _selectedPriorityOrder = null;
+                        priorityLabel.Visible = false;
+                        deliveryLabel.Visible = false;
+                        timeComboBox.Visible = false;
+                    }
                     itemsListBox.Items.Clear();
                     addressControl1.Address = order.Address;
                     order.Cart.Items.ForEach(item => itemsListBox.Items.Add(item));
                 }
             }
             amountLabel.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+        }
+
+        private void timeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedPriorityOrder.Time = timeComboBox.Text;
+            _store.updateCustomersData(customers);
         }
     }
 }

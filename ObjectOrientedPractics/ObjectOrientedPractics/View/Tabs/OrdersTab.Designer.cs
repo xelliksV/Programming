@@ -51,6 +51,9 @@
             itemsListBox = new ListBox();
             label1 = new Label();
             amountLabel = new Label();
+            priorityLabel = new Label();
+            deliveryLabel = new Label();
+            timeComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             SuspendLayout();
@@ -233,10 +236,42 @@
             amountLabel.TabIndex = 13;
             amountLabel.Text = "label2";
             // 
+            // priorityLabel
+            // 
+            priorityLabel.AutoSize = true;
+            priorityLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            priorityLabel.Location = new Point(653, 10);
+            priorityLabel.Name = "priorityLabel";
+            priorityLabel.Size = new Size(94, 15);
+            priorityLabel.TabIndex = 14;
+            priorityLabel.Text = "Priority Options";
+            // 
+            // deliveryLabel
+            // 
+            deliveryLabel.AutoSize = true;
+            deliveryLabel.Location = new Point(653, 37);
+            deliveryLabel.Name = "deliveryLabel";
+            deliveryLabel.Size = new Size(79, 15);
+            deliveryLabel.TabIndex = 15;
+            deliveryLabel.Text = "Delivery time:";
+            // 
+            // timeComboBox
+            // 
+            timeComboBox.FormattingEnabled = true;
+            timeComboBox.Items.AddRange(new object[] { "9:00-11:00", "11:00-13:00", "13:00-15:00", "15:00-17:00", "17:00-19:00", "19:00-21:00" });
+            timeComboBox.Location = new Point(740, 34);
+            timeComboBox.Name = "timeComboBox";
+            timeComboBox.Size = new Size(121, 23);
+            timeComboBox.TabIndex = 16;
+            timeComboBox.SelectedIndexChanged += timeComboBox_SelectedIndexChanged;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(timeComboBox);
+            Controls.Add(deliveryLabel);
+            Controls.Add(priorityLabel);
             Controls.Add(amountLabel);
             Controls.Add(label1);
             Controls.Add(itemsListBox);
@@ -282,5 +317,8 @@
         private DataGridViewTextBoxColumn fullName;
         private DataGridViewTextBoxColumn Address;
         private DataGridViewTextBoxColumn amount;
+        private Label priorityLabel;
+        private Label deliveryLabel;
+        private ComboBox timeComboBox;
     }
 }

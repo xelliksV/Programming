@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.Model
                 _items = new List<Item>();
             }
             customers = serialazer.deserialize();
-            if (customers.Capacity == 0)
+            if (customers == null)
             {
                 customers = new List<Customer>();
             }

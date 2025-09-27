@@ -9,19 +9,19 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
-    [DataContract]
+    
     public class Item
     {
         private static long idCounter = 0;
-        [DataMember]
+        [JsonPropertyName("id")]
         private readonly long _id;
-        [DataMember]
+        [JsonPropertyName("name")]
         private string _name;
-        [DataMember]
+        [JsonPropertyName("info")]
         private string _info;
-        [DataMember]
+        [JsonPropertyName("cost")]
         private double _cost;
-        [DataMember]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         private Category _category;
 
         public Item(string name, double cost, string info, Category category)

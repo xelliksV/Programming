@@ -22,11 +22,15 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
         }
-        public List<Customer> Customers { get { return customers; } set
+        public List<Customer> Customers
+        {
+            get { return customers; }
+            set
             {
                 customers = value;
                 updateListBox();
-            } }
+            }
+        }
         private void updateListBox()
         {
             serialazer.clear();
@@ -84,6 +88,19 @@ namespace ObjectOrientedPractics.View.Tabs
             customer.Address = addressControl.Address;
             customers[customersListBox.SelectedIndex] = customer;
             addressControl.updateControl();
+            updateListBox();
+        }
+
+        private void priorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Customer customer = customersListBox.SelectedItem as Customer;
+            if (customer.isPriority == false)
+            {
+                customer.isPriority = true;
+            } else
+            {
+                customer.isPriority = false;
+            }
             updateListBox();
         }
     }

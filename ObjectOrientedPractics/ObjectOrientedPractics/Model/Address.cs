@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
-    [DataContract]
+
     public class Address
     {
-        [DataMember]
+        [JsonPropertyName("index")]
         private int _index;
-        [DataMember]
+        [JsonPropertyName("country")]
         private string _country;
-        [DataMember]
+        [JsonPropertyName("city")]
         private string _city;
-        [DataMember]
+        [JsonPropertyName("street")]
         private string _street;
-        [DataMember]
+        [JsonPropertyName("building")]
         private string _building;
-        [DataMember]
+        [JsonPropertyName("apartment")]
         private string _apartment;
 
         public Address(int index, string country, string city, string street, string building, string apartment)

@@ -40,6 +40,7 @@
             idTextBox = new TextBox();
             nameTextBox = new TextBox();
             addressControl = new Controls.AddressControl();
+            priorityCheckBox = new CheckBox();
             SuspendLayout();
             // 
             // customersLabel
@@ -140,22 +141,34 @@
             // 
             // addressControl
             // 
-            address2.Apartment = null;
-            address2.Building = null;
-            address2.City = null;
-            address2.Country = null;
+            address2.Apartment = " ";
+            address2.Building = " ";
+            address2.City = " ";
+            address2.Country = " ";
             address2.Index = 0;
-            address2.Street = null;
+            address2.Street = " ";
             addressControl.Address = address2;
-            addressControl.Location = new Point(312, 81);
+            addressControl.Location = new Point(312, 102);
             addressControl.Name = "addressControl";
             addressControl.Size = new Size(463, 193);
             addressControl.TabIndex = 11;
+            // 
+            // priorityCheckBox
+            // 
+            priorityCheckBox.AutoSize = true;
+            priorityCheckBox.Location = new Point(377, 81);
+            priorityCheckBox.Name = "priorityCheckBox";
+            priorityCheckBox.Size = new Size(75, 19);
+            priorityCheckBox.TabIndex = 12;
+            priorityCheckBox.Text = "Is Priority";
+            priorityCheckBox.UseVisualStyleBackColor = true;
+            priorityCheckBox.CheckedChanged += priorityCheckBox_CheckedChanged;
             // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(priorityCheckBox);
             Controls.Add(addressControl);
             Controls.Add(nameTextBox);
             Controls.Add(idTextBox);
@@ -186,5 +199,6 @@
         private TextBox idTextBox;
         private TextBox nameTextBox;
         private Controls.AddressControl addressControl;
+        private CheckBox priorityCheckBox;
     }
 }

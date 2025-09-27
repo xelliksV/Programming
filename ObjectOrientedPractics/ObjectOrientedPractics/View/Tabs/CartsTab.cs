@@ -69,7 +69,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart, currentCustomer.Fullname));
+            if (currentCustomer.isPriority == false)
+            {
+                currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart, currentCustomer.Fullname));
+            } else
+            {
+                currentCustomer.Orders.Add(new PriorityOrder(currentCustomer.Address, currentCustomer.Cart, DateTime.Now, " ", currentCustomer.Fullname));
+            }
+     
             store.updateCustomersData(customers);
         }
 

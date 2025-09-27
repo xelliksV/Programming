@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    [DataContract]
+    
     public class Cart
     {
-        [DataMember]
+        [JsonPropertyName("items")]
         private List<Item> items = new List<Item>();
         public Cart() {
             

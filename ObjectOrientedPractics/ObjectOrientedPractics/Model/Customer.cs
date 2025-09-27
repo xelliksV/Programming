@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    [DataContract]
+
     public class Customer
     {
         private static int idCounter = 1;
-        [DataMember]
+        [JsonPropertyName("id")]
         private readonly int _id;
-        [DataMember]
+        [JsonPropertyName("fullname")]
         private string _fullname;
-        [DataMember]
+        [JsonPropertyName("address")]
         private Address _address;
-        [DataMember]
+        [JsonPropertyName("cart")]
         private Cart _cart;
-        [DataMember]
+        [JsonPropertyName("orders")]
         private List<Order> _orders;
+        [JsonPropertyName("isPriority")]
+        private bool _isPriority = false;
         public Customer(string fullname, Address address)
         {
             _id  = idCounter++;
@@ -33,6 +36,7 @@ namespace ObjectOrientedPractics.Model
             _cart = new Cart();
             _orders = new List<Order>();
         }
+        public bool isPriority { get { return _isPriority; } set { _isPriority = value; } }
         public Cart Cart
         {
             get { return _cart; } set { _cart = value; }
