@@ -9,7 +9,7 @@ using ObjectOrientedPractics.Model.Enums;
 namespace ObjectOrientedPractics.Model.Discounts
 {
     
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         
         private Category category;
@@ -52,6 +52,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 percent -= 0.01;
             }
+        }
+
+        public int CompareTo(PercentDiscount? other)
+        {
+            return (int) (other.percent - percent);
         }
     }
 }
