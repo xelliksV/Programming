@@ -53,7 +53,23 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 currentCustomer.Cart.Items.ForEach(x => cartListBox.Items.Add(x));
             }
-            
+            currentCustomer.Discounts.ForEach(x => discountsCheckedListBox.Items.Add(x.Info));
+            double discAmount = 0;
+            for (int i = 0; i < currentCustomer.Discounts.Count; i++)
+            {
+                discAmount += currentCustomer.Discounts[i].Calculate(currentCustomer.Cart.Items);
+            }
+            if (discAmount > 0)
+            {
+                discountAmountLabel.Text = (currentCustomer.Cart.Amount - discAmount).ToString();
+                totalLabel.Text = discAmount.ToString();
+            }
+            else
+            {
+                discountAmountLabel.Text = "0";
+                totalLabel.Text = currentCustomer.Cart.Amount.ToString();
+            }
+
             amountLabel.Text = currentCustomer.Cart.Amount.ToString();
         }
 
@@ -70,14 +86,23 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void createButton_Click(object sender, EventArgs e)
         {
+            foreach (var item in discountsCheckedListBox.CheckedItems)
+            {
+                currentCustomer.Discounts[discountsCheckedListBox.Items.IndexOf(item)].Apply(currentCustomer.Cart.Items);
+            }
+            foreach (var item in discountsCheckedListBox.Items)
+            {
+                currentCustomer.Discounts[discountsCheckedListBox.Items.IndexOf(item)].Update(currentCustomer.Cart.Items);
+            }
             if (currentCustomer.isPriority == false)
             {
                 currentCustomer.Orders.Add(new Order(currentCustomer.Address, currentCustomer.Cart, currentCustomer.Fullname));
-            } else
+            }
+            else
             {
                 currentCustomer.Orders.Add(new PriorityOrder(currentCustomer.Address, currentCustomer.Cart, DateTime.Now, " ", currentCustomer.Fullname));
             }
-     
+
             store.updateCustomersData(customers);
         }
 
@@ -105,6 +130,28 @@ namespace ObjectOrientedPractics.View.Tabs
             customerComboBox.Items.Clear();
             customers = serialazer.deserialize();
             customers.ForEach(c => customerComboBox.Items.Add(c));
+
+        }
+
+        private void discountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentCustomer = customerComboBox.SelectedItem as Customer;
+            double discAmount = 0;
+            foreach (var item in discountsCheckedListBox.CheckedItems)
+            {
+                int index = discountsCheckedListBox.Items.IndexOf(item);
+                discAmount += currentCustomer.Discounts[index].Calculate(currentCustomer.Cart.Items);
+            }
+            if (discAmount > 0)
+            {
+                discountAmountLabel.Text = (currentCustomer.Cart.Amount - discAmount).ToString();
+                totalLabel.Text = discAmount.ToString();
+            }
+            else
+            {
+                discountAmountLabel.Text = "0";
+                totalLabel.Text = currentCustomer.Cart.Amount.ToString();
+            }
         }
     }
 }
