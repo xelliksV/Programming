@@ -5,7 +5,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 namespace ObjectOrientedPractics.Model
 {
 
@@ -24,18 +25,25 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
         [JsonPropertyName("isPriority")]
         private bool _isPriority = false;
+        [JsonIgnore]
+        private List<IDiscount> _discounts = new List<IDiscount>();
         public Customer(string fullname, Address address)
         {
             _id  = idCounter++;
             Fullname = fullname;
             Address = address;
             Cart = new Cart();
+            _discounts = new List<IDiscount>();
+            _discounts.Add(new PointsDiscounts());
         }
         public Customer() { 
             _id = idCounter++;
             _cart = new Cart();
             _orders = new List<Order>();
+            _discounts = new List<IDiscount>();
+            _discounts.Add(new PointsDiscounts());
         }
+        public List<IDiscount> Discounts { get { return _discounts; } }
         public bool isPriority { get { return _isPriority; } set { _isPriority = value; } }
         public Cart Cart
         {

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address2 = new Model.Address();
+            Model.Address address1 = new Model.Address();
             customersLabel = new Label();
             customersListBox = new ListBox();
             addButton = new Button();
@@ -41,6 +41,10 @@
             nameTextBox = new TextBox();
             addressControl = new Controls.AddressControl();
             priorityCheckBox = new CheckBox();
+            label1 = new Label();
+            discountsListBox = new ListBox();
+            addDiscButton = new Button();
+            removeDiscButton = new Button();
             SuspendLayout();
             // 
             // customersLabel
@@ -141,13 +145,13 @@
             // 
             // addressControl
             // 
-            address2.Apartment = " ";
-            address2.Building = " ";
-            address2.City = " ";
-            address2.Country = " ";
-            address2.Index = 0;
-            address2.Street = " ";
-            addressControl.Address = address2;
+            address1.Apartment = " ";
+            address1.Building = " ";
+            address1.City = " ";
+            address1.Country = " ";
+            address1.Index = 0;
+            address1.Street = " ";
+            addressControl.Address = address1;
             addressControl.Location = new Point(312, 102);
             addressControl.Name = "addressControl";
             addressControl.Size = new Size(463, 193);
@@ -164,10 +168,52 @@
             priorityCheckBox.UseVisualStyleBackColor = true;
             priorityCheckBox.CheckedChanged += priorityCheckBox_CheckedChanged;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label1.Location = new Point(312, 298);
+            label1.Name = "label1";
+            label1.Size = new Size(61, 15);
+            label1.TabIndex = 13;
+            label1.Text = "Discounts";
+            // 
+            // discountsListBox
+            // 
+            discountsListBox.FormattingEnabled = true;
+            discountsListBox.ItemHeight = 15;
+            discountsListBox.Location = new Point(312, 316);
+            discountsListBox.Name = "discountsListBox";
+            discountsListBox.Size = new Size(266, 94);
+            discountsListBox.TabIndex = 14;
+            // 
+            // addDiscButton
+            // 
+            addDiscButton.Location = new Point(584, 316);
+            addDiscButton.Name = "addDiscButton";
+            addDiscButton.Size = new Size(75, 46);
+            addDiscButton.TabIndex = 15;
+            addDiscButton.Text = "Add";
+            addDiscButton.UseVisualStyleBackColor = true;
+            addDiscButton.Click += addDiscButton_Click;
+            // 
+            // removeDiscButton
+            // 
+            removeDiscButton.Location = new Point(584, 364);
+            removeDiscButton.Name = "removeDiscButton";
+            removeDiscButton.Size = new Size(75, 46);
+            removeDiscButton.TabIndex = 16;
+            removeDiscButton.Text = "Remove";
+            removeDiscButton.UseVisualStyleBackColor = true;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(removeDiscButton);
+            Controls.Add(addDiscButton);
+            Controls.Add(discountsListBox);
+            Controls.Add(label1);
             Controls.Add(priorityCheckBox);
             Controls.Add(addressControl);
             Controls.Add(nameTextBox);
@@ -200,5 +246,9 @@
         private TextBox nameTextBox;
         private Controls.AddressControl addressControl;
         private CheckBox priorityCheckBox;
+        private Label label1;
+        private ListBox discountsListBox;
+        private Button addDiscButton;
+        private Button removeDiscButton;
     }
 }

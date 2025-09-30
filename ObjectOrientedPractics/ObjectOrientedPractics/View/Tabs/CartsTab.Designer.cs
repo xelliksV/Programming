@@ -40,6 +40,12 @@
             removeButton = new Button();
             label1 = new Label();
             amountLabel = new Label();
+            discountsLabel = new Label();
+            discountsCheckedListBox = new CheckedListBox();
+            label2 = new Label();
+            discountAmountLabel = new Label();
+            label3 = new Label();
+            totalLabel = new Label();
             SuspendLayout();
             // 
             // itemLabel
@@ -156,10 +162,74 @@
             amountLabel.TabIndex = 11;
             amountLabel.Text = "label2";
             // 
+            // discountsLabel
+            // 
+            discountsLabel.AutoSize = true;
+            discountsLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            discountsLabel.Location = new Point(296, 373);
+            discountsLabel.Name = "discountsLabel";
+            discountsLabel.Size = new Size(64, 15);
+            discountsLabel.TabIndex = 12;
+            discountsLabel.Text = "Discounts:";
+            // 
+            // discountsCheckedListBox
+            // 
+            discountsCheckedListBox.BorderStyle = BorderStyle.None;
+            discountsCheckedListBox.FormattingEnabled = true;
+            discountsCheckedListBox.Location = new Point(296, 391);
+            discountsCheckedListBox.Name = "discountsCheckedListBox";
+            discountsCheckedListBox.Size = new Size(206, 108);
+            discountsCheckedListBox.TabIndex = 13;
+            discountsCheckedListBox.SelectedIndexChanged += discountsCheckedListBox_SelectedIndexChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label2.Location = new Point(678, 373);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 15);
+            label2.TabIndex = 14;
+            label2.Text = "Discount amount:";
+            // 
+            // discountAmountLabel
+            // 
+            discountAmountLabel.AutoSize = true;
+            discountAmountLabel.Location = new Point(745, 391);
+            discountAmountLabel.Name = "discountAmountLabel";
+            discountAmountLabel.Size = new Size(38, 15);
+            discountAmountLabel.TabIndex = 15;
+            discountAmountLabel.Text = "label3";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.Location = new Point(746, 504);
+            label3.Name = "label3";
+            label3.Size = new Size(37, 15);
+            label3.TabIndex = 16;
+            label3.Text = "Total:";
+            // 
+            // totalLabel
+            // 
+            totalLabel.AutoSize = true;
+            totalLabel.Location = new Point(745, 528);
+            totalLabel.Name = "totalLabel";
+            totalLabel.Size = new Size(38, 15);
+            totalLabel.TabIndex = 17;
+            totalLabel.Text = "label4";
+            // 
             // CartsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(totalLabel);
+            Controls.Add(label3);
+            Controls.Add(discountAmountLabel);
+            Controls.Add(label2);
+            Controls.Add(discountsCheckedListBox);
+            Controls.Add(discountsLabel);
             Controls.Add(amountLabel);
             Controls.Add(label1);
             Controls.Add(removeButton);
@@ -192,5 +262,11 @@
         private Button removeButton;
         private Label label1;
         private Label amountLabel;
+        private Label discountsLabel;
+        private CheckedListBox discountsCheckedListBox;
+        private Label label2;
+        private Label discountAmountLabel;
+        private Label label3;
+        private Label totalLabel;
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
 
     public class PriorityOrder : Order
@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.Model
             _time = time;
         }
 
-       
+
         [JsonConstructor]
         public PriorityOrder() { }
 
