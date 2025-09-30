@@ -11,7 +11,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
 
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         private static long idCounter = 0;
         [JsonPropertyName("id")]
@@ -72,6 +72,21 @@ namespace ObjectOrientedPractics.Model
         public override string? ToString()
         {
             return Name;
+        }
+
+        public object Clone()
+        {
+            return new Item(_name, _cost, _info, _category);
+        }
+
+        public bool Equals(Item? other)
+        {
+            return this == other;
+        }
+
+        public int CompareTo(Item? other)
+        {
+            return (int) (other._cost - _cost);
         }
     }
 }

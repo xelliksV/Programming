@@ -10,7 +10,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
 
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         [JsonPropertyName("index")]
         private int _index;
@@ -116,6 +116,18 @@ namespace ObjectOrientedPractics.Model
                     _apartment = " ";
                 }
             }
+        }
+
+        
+
+        public bool Equals(Address? other)
+        {
+            return this == other;
+        }
+
+        public object Clone()
+        {
+            return new Address(_index, _country, _city, _street, _building, _apartment);
         }
     }
 }

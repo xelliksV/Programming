@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PointsDiscounts : IDiscount
+    public class PointsDiscounts : IDiscount, IComparable<PointsDiscounts>
     {
        
         private int count;
@@ -51,6 +51,12 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             count += (int)(amount(items) * 0.1);
         }
+
+        public int CompareTo(PointsDiscounts? other)
+        {
+            return (other.Count - Count);
+        }
+
         public string Info { get { return "Накопительная - " + count + " баллов."; } }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     
-    public class Cart
+    public class Cart : ICloneable, IEquatable<Cart>
     {
         [JsonPropertyName("items")]
         private List<Item> items = new List<Item>();
@@ -29,6 +29,18 @@ namespace ObjectOrientedPractics.Model
                 }
                 return total;
             }
+        }
+
+        public object Clone()
+        {
+            Cart cart = new Cart();
+            cart.Items = Items;
+            return cart;
+        }
+
+        public bool Equals(Cart? other)
+        {
+            return this == other;
         }
     }
 }
