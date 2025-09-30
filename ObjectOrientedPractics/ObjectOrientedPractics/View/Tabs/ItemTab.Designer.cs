@@ -44,6 +44,10 @@
             refactorButton = new Button();
             categoryLabel = new Label();
             categoryComboBox = new ComboBox();
+            findLabel = new Label();
+            textBox1 = new TextBox();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // itemsLabel
@@ -60,7 +64,7 @@
             // 
             itemsListBox.FormattingEnabled = true;
             itemsListBox.ItemHeight = 15;
-            itemsListBox.Location = new Point(0, 18);
+            itemsListBox.Location = new Point(0, 60);
             itemsListBox.Name = "itemsListBox";
             itemsListBox.Size = new Size(351, 484);
             itemsListBox.TabIndex = 1;
@@ -68,7 +72,7 @@
             // 
             // AddButton
             // 
-            AddButton.Location = new Point(3, 508);
+            AddButton.Location = new Point(3, 580);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(91, 42);
             AddButton.TabIndex = 2;
@@ -78,7 +82,7 @@
             // 
             // RemoveButton
             // 
-            RemoveButton.Location = new Point(100, 508);
+            RemoveButton.Location = new Point(100, 580);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(91, 42);
             RemoveButton.TabIndex = 3;
@@ -175,7 +179,7 @@
             // 
             // refactorButton
             // 
-            refactorButton.Location = new Point(197, 508);
+            refactorButton.Location = new Point(197, 580);
             refactorButton.Name = "refactorButton";
             refactorButton.Size = new Size(91, 42);
             refactorButton.TabIndex = 13;
@@ -200,10 +204,50 @@
             categoryComboBox.Size = new Size(121, 23);
             categoryComboBox.TabIndex = 15;
             // 
+            // findLabel
+            // 
+            findLabel.AutoSize = true;
+            findLabel.Location = new Point(3, 23);
+            findLabel.Name = "findLabel";
+            findLabel.Size = new Size(33, 15);
+            findLabel.TabIndex = 16;
+            findLabel.Text = "Find:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(42, 18);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(309, 23);
+            textBox1.TabIndex = 17;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 547);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 15);
+            label1.TabIndex = 18;
+            label1.Text = "Order by:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Cost (Ascending)", "Cost (Descending)", "Name" });
+            comboBox1.Location = new Point(56, 547);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 19;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // ItemTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(comboBox1);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
+            Controls.Add(findLabel);
             Controls.Add(categoryComboBox);
             Controls.Add(categoryLabel);
             Controls.Add(refactorButton);
@@ -221,7 +265,7 @@
             Controls.Add(itemsListBox);
             Controls.Add(itemsLabel);
             Name = "ItemTab";
-            Size = new Size(897, 553);
+            Size = new Size(897, 639);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -244,5 +288,9 @@
         private Button refactorButton;
         private Label categoryLabel;
         private ComboBox categoryComboBox;
+        private Label findLabel;
+        private TextBox textBox1;
+        private Label label1;
+        private ComboBox comboBox1;
     }
 }
