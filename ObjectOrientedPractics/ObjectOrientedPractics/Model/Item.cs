@@ -13,6 +13,9 @@ namespace ObjectOrientedPractics.Model
 
     public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
+        public event EventHandler<EventArgs> NameChanged;
+        public event EventHandler<EventArgs> CostChanged;
+        public event EventHandler<EventArgs> InfoChanged;
         private static long idCounter = 0;
         [JsonPropertyName("id")]
         private readonly long _id;
@@ -43,6 +46,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 200, "Name"))
                 {
                     _name = value;
+                    NameChanged?.Invoke(this, EventArgs.Empty);
                 } 
             } }
         public double Cost
@@ -53,6 +57,7 @@ namespace ObjectOrientedPractics.Model
                 if (value >= 0 && value <= 100000)
                 {
                     _cost = value;
+                    CostChanged?.Invoke(this, EventArgs.Empty);
                 } else
                 {
                     throw new ArgumentException();
@@ -64,6 +69,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 1000, "Info"))
                 {
                     _info = value; 
+                    InfoChanged?.Invoke(this, EventArgs.Empty);  
                 } 
             }
         }

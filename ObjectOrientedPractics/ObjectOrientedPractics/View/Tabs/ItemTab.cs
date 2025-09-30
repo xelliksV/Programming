@@ -16,6 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemTab : UserControl
     {
+        public event EventHandler<EventArgs> ItemsChanged;
         private JsonSerialazer<Item> itemSerializer = new JsonSerialazer<Item>("C:\\Users\\vlad4\\OneDrive\\Документы\\itemsData.json");
         private List<Item> _items = new List<Item>();
         private List<Item> _displayedItems = new List<Item>();
@@ -30,7 +31,7 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _items = value;
-                _displayedItems = _items;
+                _displayedItems.AddRange(_items);
                 updateListBox();
             }
         }
@@ -52,6 +53,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.Add(item);
             _displayedItems.Add(item);
             updateListBox();
+            ItemsChanged.Invoke(this, EventArgs.Empty);
         }
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +79,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.Remove(current);
             _displayedItems.Remove(current);
             updateListBox();
+            ItemsChanged.Invoke(this, EventArgs.Empty);
         }
 
         private void costTextBox_TextChanged(object sender, EventArgs e)
@@ -128,6 +131,7 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Category = (Category)Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items[itemsListBox.SelectedIndex] = item;
             updateListBox();
+            ItemsChanged.Invoke(this, EventArgs.Empty);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
