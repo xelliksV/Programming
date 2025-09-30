@@ -6,9 +6,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     using System.Text.Json.Serialization;
+    using ObjectOrientedPractics.Model.Enums;
 
     [JsonDerivedType(typeof(PriorityOrder), "priorityOrder")]
     public class Order
@@ -45,9 +46,9 @@ namespace ObjectOrientedPractics.Model
             _amount = cart.Amount;
             _id = nextId++;
             _name = name;
-            _status = OrderStatus.New; 
+            _status = OrderStatus.New;
         }
-        
+
         [JsonConstructor]
         public Order() { }
 

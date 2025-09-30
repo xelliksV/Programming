@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PointsDiscounts
+    public class PointsDiscounts : IDiscount
     {
+       
         private int count;
+        public PointsDiscounts() { }
         public int Count { get { return count; } private set { } }
         private double amount(List<Item> items)
         {
@@ -19,33 +22,35 @@ namespace ObjectOrientedPractics.Model
             }
             return total;
         }
-        public double calculate(List<Item> items)
+        public double Calculate(List<Item> items)
         {
             double total = amount(items);
             if (count <= total * 0.3)
             {
                 return count;
-            } else
+            }
+            else
             {
                 return total * 0.3;
             }
         }
         public double Apply(List<Item> items)
         {
-            double result = calculate(items);
+            double result = Calculate(items);
             if (result == count)
             {
                 count = 0;
-            } else
+            }
+            else
             {
-                count -= (int) result;
+                count -= (int)result;
             }
             return result;
         }
-        public void Update(List<Item> items) 
+        public void Update(List<Item> items)
         {
-            count += (int) (amount(items) * 0.1);
+            count += (int)(amount(items) * 0.1);
         }
-        public String info { get { return "Накопительная - " +  count + " баллов."; } }
+        public string Info { get { return "Накопительная - " + count + " баллов."; } }
     }
 }

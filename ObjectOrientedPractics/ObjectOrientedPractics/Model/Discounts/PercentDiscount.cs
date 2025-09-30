@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Enums;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount
+    
+    public class PercentDiscount : IDiscount
     {
+        
         private Category category;
+ 
         private double percent = 0.99;
+   
         private double total;
-
+        public PercentDiscount(Category category)
+        {
+            this.category = category;
+        }
+        public Category Category { get { return category; } set { category = value; } }
         public string Info { get { return "Процентная " + category.ToString() + " - " + (1 - percent).ToString(); } }
         private double isCategoryPresent(List<Item> items)
         {
@@ -36,7 +46,7 @@ namespace ObjectOrientedPractics.Model
             Update(items);
             return Calculate(items);
         }
-        public void Update(List<Item> items) 
+        public void Update(List<Item> items)
         {
             if (isCategoryPresent(items) > 1000 && percent <= 0.9)
             {
