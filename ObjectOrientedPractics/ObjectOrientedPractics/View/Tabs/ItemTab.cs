@@ -18,6 +18,7 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private JsonSerialazer<Item> itemSerializer = new JsonSerialazer<Item>("C:\\Users\\vlad4\\OneDrive\\Документы\\itemsData.json");
         private List<Item> _items = new List<Item>();
+        private List<Item> _displayedItems = new List<Item>();
         public ItemTab()
         {
             InitializeComponent();
@@ -25,9 +26,11 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         public List<Item> Items
         {
-            get { return _items; } set
+            get { return _items; }
+            set
             {
                 _items = value;
+                _displayedItems = _items;
                 updateListBox();
             }
         }
@@ -36,7 +39,7 @@ namespace ObjectOrientedPractics.View.Tabs
             itemSerializer.clear();
             itemSerializer.serialize(_items);
             itemsListBox.Items.Clear();
-            _items.ForEach(x => itemsListBox.Items.Add(x));
+            _displayedItems.ForEach(x => itemsListBox.Items.Add(x));
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -45,8 +48,9 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
-            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
+            item.Category = (Category)Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items.Add(item);
+            _displayedItems.Add(item);
             updateListBox();
         }
 
@@ -71,6 +75,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Item current = itemsListBox.SelectedItem as Item;
             _items.Remove(current);
+            _displayedItems.Remove(current);
             updateListBox();
         }
 
@@ -120,8 +125,31 @@ namespace ObjectOrientedPractics.View.Tabs
             item.Cost = double.Parse(costTextBox.Text);
             item.Name = nameTextBox.Text;
             item.Info = infoTextBox.Text;
-            item.Category = (Category) Enum.Parse(typeof(Category), categoryComboBox.Text);
+            item.Category = (Category)Enum.Parse(typeof(Category), categoryComboBox.Text);
             _items[itemsListBox.SelectedIndex] = item;
+            updateListBox();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            _displayedItems = DataTools.filter(_items, DataTools.daidinahuy, textBox1.Text);
+            updateListBox();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                _displayedItems = DataTools.sort(_displayedItems, DataTools.compareByCostAsc);
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                _displayedItems = DataTools.sort(_displayedItems, DataTools.compareByCostDesc);
+            } 
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                _displayedItems = DataTools.sort(_displayedItems, DataTools.compareByName);
+            }
             updateListBox();
         }
     }
