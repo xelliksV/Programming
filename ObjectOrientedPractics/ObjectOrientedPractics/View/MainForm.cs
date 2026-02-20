@@ -35,14 +35,10 @@ namespace ObjectOrientedPractics
         }
         private void selectedTabChanged(object sender, EventArgs e)
         {
-            //if (tabControl1.SelectedIndex == 2)
-            //{
-            //    cartsTab1.refreshData();
-            //}
-            //else if (tabControl1.SelectedIndex == 3)
-            //{
-            //    ordersTab1.updateOrders();
-            //}
+            if (tabControl1.SelectedIndex == 3)
+            {
+                ordersTab1.getAllOrders();
+            }
         }
     }
 }
