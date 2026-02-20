@@ -28,6 +28,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public List<Customer> Customers { get { return customers; } set { customers = value; } }
         public void getAllOrders()
         {
+            orders.Clear();
             foreach (Customer customer in customers)
             {
                 orders.AddRange(customer.Orders);
