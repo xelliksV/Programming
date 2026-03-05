@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="Contacts.Avalonia.MainWindow"
+        Title="Contacts"
+        Width="800" Height="450">
+
+  <Grid Margin="15">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <Border Grid.Column="0" Margin="0,0,10,0" BorderThickness="1" Padding="8">
+        <StackPanel>
+          <TextBlock Text="Edit Contact" FontWeight="Bold" Margin="0,0,0,8"/>
+          <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Name:"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" Margin="5,0,0,0"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Phone Number:"/>
+            <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}" Margin="5,0,0,10"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="Email:"/>
+            <TextBox Text="{Binding Email, Mode=TwoWay}" Margin="5,0,0,0"/>
+          </StackPanel>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Grid.Column="1" Margin="10,0,0,0" BorderThickness="1" Padding="8">
+        <StackPanel>
+          <TextBlock Text="Read Contact" FontWeight="Bold" Margin="0,0,0,8"/>
+          <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Name:"/>
+            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Phone number:"/>
+            <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="Email:"/>
+            <TextBlock Text="{Binding Email}" FontWeight="Bold"/>
+          </StackPanel>
+          </Grid>
+        </StackPanel>
+      </Border>
+    </Grid>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+      <Button Command="{Binding SaveCommand}" Content="Save" Width="72" Height="25" Margin="0,0,10,0"/>
+      <Button Command="{Binding LoadCommand}" Content="Load" Width="72" Height="25"/>
+    </StackPanel>
+  </Grid>
+</Window>
