@@ -10,7 +10,7 @@ namespace Contacts.model.services
 {
     public class ContactSerializer
     {
-        String pathToFile = "C:\\Users\\vlad4\\OneDrive\\Документы\\Contacs\\contacts.json";
+        String pathToFile = "C:\\Users\\vlad4\\Documents\\contacts.json";
         public void saveContact(Contact contact)
         {
             File.WriteAllText(pathToFile, "");
@@ -18,7 +18,17 @@ namespace Contacts.model.services
         }
         public Contact getContact()
         {
-            return JsonConvert.DeserializeObject<Contact>(File.ReadAllText(pathToFile));
+            try
+            {
+                if (!File.Exists(pathToFile)) return null;
+                var text = File.ReadAllText(pathToFile);
+                if (string.IsNullOrWhiteSpace(text)) return null;
+                return JsonConvert.DeserializeObject<Contact>(text);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
