@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Contacts.model;
+using System.Windows.Input;
 
 namespace Contacts.viewModel
 {
@@ -14,8 +15,18 @@ namespace Contacts.viewModel
         public event PropertyChangedEventHandler? PropertyChanged;
         private Contact currentContact = new Contact();
         private SaveCommand save = new SaveCommand();
+        private LoadCommand load = new LoadCommand();
+        public ICommand SaveCommand { get; }
+        public ICommand LoadCommand { get; }
         public MainVM() {
-            currentContact = new LoadCommand().Execute(this);
+            // initialize command properties
+            SaveCommand = save;
+            LoadCommand = load;
+
+            // try to load saved contact
+            var loaded = load.Execute(this);
+            if (loaded != null)
+                currentContact = loaded;
             if (currentContact == null)
             {
                 currentContact = new Contact();
@@ -23,6 +34,18 @@ namespace Contacts.viewModel
                 PhoneNumber = "+7-913-111-22-33";
                 Email = "yuri.smirnov@no.mail";
             }
+        }
+        // expose current contact for binding as CommandParameter
+        public Contact CurrentContact => currentContact;
+
+        // allow LoadCommand to update VM with loaded contact
+        public void LoadContact(Contact c)
+        {
+            if (c == null) return;
+            currentContact = c;
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(PhoneNumber));
+            OnPropertyChanged(nameof(Email));
         }
         public String Name
         {
@@ -33,7 +56,7 @@ namespace Contacts.viewModel
             set
             {
                 currentContact.Name = value;
-                save.Execute(currentContact);
+                //save.Execute(currentContact);
                 OnPropertyChanged();
             }
         }
@@ -46,7 +69,7 @@ namespace Contacts.viewModel
             set
             {
                 currentContact.Phone = value;
-                save.Execute(currentContact);
+                //save.Execute(currentContact);
                 OnPropertyChanged();
             }
         }
@@ -59,7 +82,7 @@ namespace Contacts.viewModel
             set
             {
                 currentContact.Email = value;
-                save.Execute(currentContact);
+                //save.Execute(currentContact);
                 OnPropertyChanged();
             }
         }

@@ -20,7 +20,10 @@ namespace Contacts.viewModel
 
         public void Execute(object? parameter)
         {
-            serializer.saveContact((Contact) parameter);
+            if (parameter is Contact c)
+            {
+                serializer.saveContact(c);
+            }
         }
     }
 }
