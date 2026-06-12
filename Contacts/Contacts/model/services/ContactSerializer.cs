@@ -1,33 +1,70 @@
-﻿using System;
+﻿using model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
-namespace Contacts.model.services
+namespace model.Services
 {
+    /// <summary>
+    /// Класс для сериализации и десериализации списка контактов в формате JSON.
+    /// </summary>
     public class ContactSerializer
     {
-        String pathToFile = "C:\\Users\\vlad4\\Documents\\contacts.json";
-        public void saveContact(Contact contact)
+        /// <summary>
+        /// Путь к файлу, в котором хранятся контакты.
+        /// </summary>
+        private readonly string _filePath;
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса ContactSerializer.
+        /// Создает директорию для хранения контактов, если она не существует.
+        /// </summary>
+        public ContactSerializer()
         {
-            File.WriteAllText(pathToFile, "");
-            File.WriteAllText(pathToFile, JsonConvert.SerializeObject(contact));
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string contactsDirectory = Path.Combine(documentsPath, "Contacts");
+            _filePath = Path.Combine(contactsDirectory, "contacts.json");
+
+            if (!Directory.Exists(contactsDirectory))
+            {
+                Directory.CreateDirectory(contactsDirectory);
+            }
         }
-        public Contact getContact()
+
+        /// <summary>
+        /// Сохраняет список контактов в файл в формате JSON.
+        /// </summary>
+        /// <param name="contacts">Список контактов для сохранения.</param>
+        public void SaveContacts(ObservableCollection<Contact> contacts)
+        {
+            string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+            File.WriteAllText(_filePath, json);
+        }
+
+        /// <summary>
+        /// Загружает список контактов из файла.
+        /// </summary>
+        /// <returns>Список контактов. Если файл не существует, возвращает пустую коллекцию.</returns>
+        public ObservableCollection<Contact> LoadContacts()
         {
             try
             {
-                if (!File.Exists(pathToFile)) return null;
-                var text = File.ReadAllText(pathToFile);
-                if (string.IsNullOrWhiteSpace(text)) return null;
-                return JsonConvert.DeserializeObject<Contact>(text);
+                if (!File.Exists(_filePath))
+                {
+                    return new ObservableCollection<Contact>();
+                }
+
+                string json = File.ReadAllText(_filePath);
+                return JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json) ?? new ObservableCollection<Contact>();
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                return new ObservableCollection<Contact>();
             }
         }
     }
