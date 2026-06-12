@@ -1,94 +1,215 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using model;
+using model.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Contacts.model;
 using System.Windows.Input;
 
-namespace Contacts.viewModel
+namespace ViewModel
 {
-    public class MainVM : INotifyPropertyChanged
+    /// <summary>
+    /// Основная ViewModel для управления списком контактов.
+    /// </summary>
+    public class MainVM : ObservableObject
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private Contact currentContact = new Contact();
-        private SaveCommand save = new SaveCommand();
-        private LoadCommand load = new LoadCommand();
-        public ICommand SaveCommand { get; }
-        public ICommand LoadCommand { get; }
-        public MainVM() {
-            // initialize command properties
-            SaveCommand = save;
-            LoadCommand = load;
+        /// <summary>
+        /// Сериализатор для работы с контактами.
+        /// </summary>
+        private readonly ContactSerializer _contactSerializer = new();
 
-            // try to load saved contact
-            var loaded = load.Execute(this);
-            if (loaded != null)
-                currentContact = loaded;
-            if (currentContact == null)
-            {
-                currentContact = new Contact();
-                Name = "Смирнов Юрий";
-                PhoneNumber = "+7-913-111-22-33";
-                Email = "yuri.smirnov@no.mail";
-            }
-        }
-        // expose current contact for binding as CommandParameter
-        public Contact CurrentContact => currentContact;
+        /// <summary>
+        /// Выбранный контакт.
+        /// </summary>
+        private Contact _selectedContact;
 
-        // allow LoadCommand to update VM with loaded contact
-        public void LoadContact(Contact c)
+        /// <summary>
+        /// Флаг, указывающий, находится ли выбранный контакт в режиме редактирования.
+        /// </summary>
+        private bool _isEditing;
+
+        /// <summary>
+        /// Индекс редактируемого контакта. Равен -1 при добавлении контакта. 
+        /// </summary>
+        private int _indexContact;
+
+        /// <summary>
+        /// Задает или возвращает выбранный контакт.
+        /// </summary>
+        public Contact SelectedContact
         {
-            if (c == null) return;
-            currentContact = c;
-            OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(PhoneNumber));
-            OnPropertyChanged(nameof(Email));
-        }
-        public String Name
-        {
-            get
-            {
-                return currentContact.Name; 
-            }
+            get => _selectedContact;
             set
             {
-                currentContact.Name = value;
-                //save.Execute(currentContact);
-                OnPropertyChanged();
+                if (SetProperty(ref _selectedContact, value))
+                {
+                    IsEditing = false; // Отключаем редактирование при выборе нового контакта
+                    OnPropertyChanged(nameof(CanEdit));
+                    OnPropertyChanged(nameof(CanRemove));
+                    ((RelayCommand)EditCommand).NotifyCanExecuteChanged();
+                    ((RelayCommand)RemoveCommand).NotifyCanExecuteChanged();
+                }
             }
         }
-        public String PhoneNumber
+
+        /// <summary>
+        /// Задает или возвращает флаг, указывающий, находится ли выбранный контакт в режиме редактирования.
+        /// </summary>
+        public bool IsEditing
         {
-            get
-            {
-                return currentContact.Phone;
-            }
+            get => _isEditing;
             set
             {
-                currentContact.Phone = value;
-                //save.Execute(currentContact);
-                OnPropertyChanged();
+                if (SetProperty(ref _isEditing, value))
+                {
+                    OnPropertyChanged(nameof(CanApply));
+                    ((RelayCommand)ApplyCommand).NotifyCanExecuteChanged();
+                }
             }
         }
-        public String Email
+
+        /// <summary>
+        /// Возвращает коллекцию контактов.
+        /// </summary>
+        public ObservableCollection<Contact> Contacts { get; } = new();
+
+        /// <summary>
+        /// Возвращает значение, указывающее, можно ли редактировать выбранный контакт.
+        /// </summary>
+        public bool CanEdit => SelectedContact != null && !IsEditing;
+
+        /// <summary>
+        /// Возвращает значение, указывающее, можно ли удалить выбранный контакт.
+        /// </summary>
+        public bool CanRemove => SelectedContact != null;
+
+        /// <summary>
+        /// Возвращает значение, указывающее, можно ли применить изменения.
+        /// </summary>
+        public bool CanApply => IsEditing;
+
+        /// <summary>
+        /// Команда для добавления нового контакта.
+        /// </summary>
+        public ICommand AddCommand { get; }
+
+        /// <summary>
+        /// Команда для редактирования выбранного контакта.
+        /// </summary>
+        public ICommand EditCommand { get; }
+
+        /// <summary>
+        /// Команда для удаления выбранного контакта.
+        /// </summary>
+        public ICommand RemoveCommand { get; }
+
+        /// <summary>
+        /// Команда для применения изменений.
+        /// </summary>
+        public ICommand ApplyCommand { get; }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса MainVM.
+        /// </summary>
+        public MainVM()
         {
-            get
+            LoadContacts();
+
+            AddCommand = new RelayCommand(AddContact);
+            EditCommand = new RelayCommand(EditContact, () => CanEdit);
+            RemoveCommand = new RelayCommand(RemoveContact, () => CanRemove);
+            ApplyCommand = new RelayCommand(ApplyChanges, () => CanApply);
+        }
+
+        /// <summary>
+        /// Добавляет новый контакт в коллекцию.
+        /// </summary>
+        private void AddContact()
+        {
+            var newContact = new Contact();
+            SelectedContact = null;
+            SelectedContact = newContact;
+            IsEditing = true;
+            _indexContact = -1;
+        }
+
+        /// <summary>
+        /// Включает режим редактирования для выбранного контакта.
+        /// </summary>
+        private void EditContact()
+        {
+            if (SelectedContact != null)
             {
-                return currentContact.Email;
-            }
-            set
-            {
-                currentContact.Email = value;
-                //save.Execute(currentContact);
-                OnPropertyChanged();
+                _indexContact = Contacts.IndexOf(SelectedContact);
+                SelectedContact = (Contact)Contacts[_indexContact].Clone();
+                IsEditing = true;
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+
+        /// <summary>
+        /// Применяет изменения и сохраняет контакты.
+        /// </summary>
+        private void ApplyChanges()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (SelectedContact != null && !Contacts.Contains(SelectedContact) && _indexContact == -1)
+            {
+
+                Contacts.Add(SelectedContact);
+
+            }
+
+            if (SelectedContact != null && _indexContact != -1)
+            {
+                Contacts[_indexContact] = SelectedContact;
+            }
+
+            IsEditing = false;
+            SaveContacts();
+        }
+
+        /// <summary>
+        /// Удаляет выбранный контакт из коллекции.
+        /// </summary>
+        private void RemoveContact()
+        {
+            if (SelectedContact == null) return;
+
+            int index = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+
+            SelectedContact = Contacts.Count > 0
+                ? (index < Contacts.Count ? Contacts[index] : Contacts[^1])
+                : null;
+
+            SaveContacts();
+        }
+
+        /// <summary>
+        /// Сохраняет список контактов в файл.
+        /// </summary>
+        private void SaveContacts()
+        {
+            _contactSerializer.SaveContacts(Contacts);
+        }
+
+        /// <summary>
+        /// Загружает список контактов из файла.
+        /// </summary>
+        private void LoadContacts()
+        {
+            var loadedContacts = _contactSerializer.LoadContacts();
+            foreach (var contact in loadedContacts)
+            {
+                Contacts.Add(contact);
+            }
         }
     }
+
 }

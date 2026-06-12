@@ -4,127 +4,60 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
-        xmlns:viewModel="clr-namespace:Contacts.viewModel" x:Class="Contacts.MainWindow"
+        xmlns:viewModel="clr-namespace:ViewModel" x:Class="Contacts.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="/ContactsApp_96x96.ico">
+        Title="Contacts" Height="450" Width="600" MinWidth="600" MinHeight="450">
+    <Window.Resources>
+        <viewModel:BoolToVisibilityConverterVM x:Key="BoolToVisibilityConverterVM"/>
+    </Window.Resources>
     <Window.DataContext>
         <viewModel:MainVM/>
     </Window.DataContext>
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <GroupBox Grid.Column="0" 
-                      Header="Edit Сontact"
-                      Margin="0,0,10,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="0" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2">
-                        <Label Content="Name:" />
-                        <TextBox x:Name="editName"
-                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="5,0,0,0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="1" 
-                                Grid.Column="0" 
-                                Grid.ColumnSpan="2">
-                        <Label Content="Phone Number:"/>
-                        <TextBox x:Name="editPhone" 
-                                 Margin="5,0,0,10" 
-                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="2" 
-                                Grid.Column="0" 
-                                Grid.ColumnSpan="2">
-                        <Label Content="Email:" 
-                               Grid.Row="2"
-                               Grid.Column="0"/>
-                        <TextBox x:Name="editEmail"
-                                 Grid.Row="2" 
-                                 Grid.Column="1" 
-                                 Margin="5,0,0,0" 
-                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
-            </GroupBox>
-            <GroupBox Grid.Column="1" 
-                      Header="Read Contact" 
-                      Margin="10,0,0,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="0" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2">
-                        <Label Content="Name:"/>
-                        <Label Content="{Binding Name}"
-                               FontWeight="Bold"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="1" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2">
-                        <Label Content="Phone number:"/>
-                        <Label Content="{Binding PhoneNumber}"
-                               FontWeight="Bold"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Row="2" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2">
-                        <Label Content="Email:"/>
-                        <Label Content="{Binding Email}"
-                               FontWeight="Bold"/>
-                    </StackPanel>
-                </Grid>
-            </GroupBox>
-        </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" MinWidth="150" />
+            <ColumnDefinition Width="3" />
+            <!-- GridSplitter -->
+            <ColumnDefinition Width="3*" MinWidth="250" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="2" 
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="0,20,0,0">
-            <Button x:Name="SaveButton"
-                    Content="Save" 
-                    Width="72" 
-                    Height="25" 
-                    Margin="0,0,10,0"
-                    Command="{Binding SaveCommand}"
-                    CommandParameter="{Binding CurrentContact}"/>
-            <Button x:Name="LoadButton" 
-                    Content="Load" 
-                    Width="72" 
-                    Height="25"
-                    Command="{Binding LoadCommand}"
-                    CommandParameter="{Binding}"/>
+        <!-- Left Column -->
+        <StackPanel Grid.Column="0" Background="#f8f8f8" Margin="15,15,3,15" >
+            <StackPanel Orientation ="Horizontal">
+                <TextBlock Text="Find:"></TextBlock>
+                <TextBox Margin="3" Width="183" />
+            </StackPanel>
+            <ListBox Margin="3" Height="300" VerticalAlignment="Bottom" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+                <!-- Другие элементы -->
+            </ListBox>
+            <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="Add" Height="25" Width="57" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding AddCommand}"/>
+                <Button Content="Edit" Height="25" Width="57" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding EditCommand}" IsEnabled="{Binding CanEdit}"/>
+                <Button Content="Remove" Height="25" Width="57" Margin="3" RenderTransformOrigin="2.28,0.723" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding RemoveCommand}" IsEnabled="{Binding CanRemove}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- GridSplitter -->
+        <GridSplitter Grid.Column="1" Width="3" Background="White" HorizontalAlignment="Stretch" />
+
+        <!-- Right Column -->
+        <StackPanel Grid.Column="2" Background="White" Margin="8">
+            <Grid Margin="3,15,15,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Width="100" Height="100" Margin="3" Grid.Column="0" />
+                <StackPanel Grid.Column="1" Margin="3">
+                    <TextBlock Text="Name:" />
+                    <TextBox Margin="3" Text="{Binding SelectedContact.Name, Mode=TwoWay}" IsEnabled="{Binding IsEditing}"/>
+                    <TextBlock Text="Phone Number:" />
+                    <TextBox Margin="3" Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay}" IsEnabled="{Binding IsEditing}"/>
+                    <TextBlock Text="Email:" />
+                    <TextBox  Margin="3" Text="{Binding SelectedContact.Email, Mode=TwoWay}" IsEnabled="{Binding IsEditing}"/>
+                </StackPanel>
+            </Grid>
+            <Button Content="Apply" Width="75" Height="25" Margin="3" VerticalAlignment="Top" Command="{Binding ApplyCommand}" Visibility="{Binding CanApply, Converter={StaticResource BoolToVisibilityConverterVM}}" IsEnabled="True"/>
         </StackPanel>
     </Grid>
 </Window>
